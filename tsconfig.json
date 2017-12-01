@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "strict": true,
+        "module": "commonjs",
+        "target": "esnext",
+        "jsx": "react",
+        "lib": ["dom", "esnext"]
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
