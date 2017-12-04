@@ -8,18 +8,22 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia,
+  Popover,
   Divider
 } from 'material-ui'
 import {
   StyleRules,
   StyledComponentProps,
+  WithStyles,
 
   withStyles
 } from 'material-ui/styles'
 import { Share } from 'material-ui-icons'
 
+import SocialShareList, { SocialMedia } from './SocialShareList'
 import { ImageSharpSizes, ImageSharpResolutions } from '../../../../graphql-types'
+
+const BASE_URL = 'https://cristianeberto.com.br'
 
 const styles: StyleRules = {
   root: {
@@ -43,31 +47,83 @@ interface IPostProps extends StyledComponentProps {
   sizes: ImageSharpSizes
 }
 
-const Post = ({ title, slug, content, classes, resolutions, sizes }: IPostProps) => {
-  return (
-    <Card className={classes && classes.root}>
-      {/*<CardMedia image={resolutions.src as string}>
-      </CardMedia>*/}
-      <Img sizes={sizes} resolutions={resolutions} />
-      <CardContent>
-        <Typography type="headline" component="h2" gutterBottom>
-          {title}
-        </Typography>
-        <Typography component="p">
-          {content}
-        </Typography>
-      </CardContent>
-      <Divider light />
-      <CardActions className={classes && classes.actions}>
-        <Button color="accent" onClick={() => navigateTo(slug)}>
-          Ler mais
-        </Button>
-        <IconButton>
-          <Share />
-        </IconButton>
-      </CardActions>
-    </Card>
-  )
+
+class Post extends React.Component<IPostProps & WithStyles> {
+  state = {
+    anchorEl: undefined as undefined | HTMLElement,
+    popoverHover: false
+  }
+
+  handleShareButtonClick = ({ target }: any) => {
+    this.setState({ anchorEl: this.state.anchorEl ? undefined : target })
+  }
+
+  handlePopoverResquestClose = () => {
+    this.setState({ anchorEl: undefined })
+  }
+
+  render () {
+    const { title, slug, content, classes, resolutions, sizes } = this.props
+    const socialMedias: [SocialMedia] = [
+      {
+        name: 'Facebook',
+        shareLink: `https://www.facebook.com/sharer/sharer.php?u=${BASE_URL}${slug}`
+      },
+      {
+        name: 'Twitter',
+        shareLink: `https://twitter.com/home?status=${BASE_URL}${slug}`
+      },
+      {
+        name: 'Google+',
+        shareLink: `https://plus.google.com/share?url=${BASE_URL}${slug}`
+      },
+      {
+        name: 'WhatsApp',
+        shareLink: `https://api.whatsapp.com/send?text=cristianeberto.com/${slug}`
+      }
+    ]
+    const { anchorEl } = this.state
+    let open = !!anchorEl
+
+    return (
+      <Card className={classes && classes.root}>
+        <Img sizes={sizes} resolutions={resolutions} />
+        <CardContent>
+          <Typography type="headline" component="h2" gutterBottom>
+            {title}
+          </Typography>
+          <Typography component="p">
+            {content}
+          </Typography>
+        </CardContent>
+        <Divider light />
+        <CardActions className={classes && classes.actions}>
+          <Button color="accent" onClick={() => navigateTo(slug)}>
+            Ler mais
+          </Button>
+          <IconButton onClick={this.handleShareButtonClick}>
+            <Share />
+          </IconButton>
+          <Popover
+            className={classes.popover}
+            open={open}
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left'
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left'
+            }}
+            onRequestClose={this.handlePopoverResquestClose}
+          >
+            <SocialShareList socialMedias={socialMedias} />
+          </Popover>
+        </CardActions>
+      </Card>
+    )
+  }
 }
 
 export default withStyles(styles)(Post)

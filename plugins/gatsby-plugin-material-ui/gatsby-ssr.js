@@ -13,13 +13,14 @@ exports.replaceRenderer = ({
   bodyComponent,
   replaceBodyHTMLString
 }) => {
-  const theme = createMuiTheme({
+  /*const theme = createMuiTheme({
     palette: {
       primary: green,
       accent: red,
       type: 'light',
     }
-  })
+  })*/
+  const theme = createMuiTheme()
   const jss = create(preset())
 
   jss.options.createGenerateClassName = createGenerateClassName

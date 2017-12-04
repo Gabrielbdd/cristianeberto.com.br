@@ -36,7 +36,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-json',
     'gatsby-plugin-typescript',
-    /*{
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Cristiane Berto',
@@ -47,7 +47,7 @@ module.exports = {
         display: 'minimal-ui'
       }
     },
-    'gatsby-plugin-offline',*/
     `gatsby-plugin-material-ui`
+    //'gatsby-plugin-offline',
   ]
 }
