@@ -16,7 +16,6 @@ import returnType from '../../utils/returnType'
 import Disqus from '../../components/Disqus'
 import ReadingProgressBar from './ReadingProgressBar'
 import Author from './Author'
-import addThis from './addThis'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
@@ -24,6 +23,7 @@ const styles = (theme: Theme): StyleRules => ({
     padding: '10px 20px',
     margin: '0 auto',
     color: theme.palette.text.primary,
+    
     '& article p': {
       fontSize: '1.1em',
       letterSpacing: '.01em',
@@ -78,10 +78,6 @@ interface IProps extends WithStyles<keyof typeof stylesType> {
 }
 
 class BlogPost extends React.Component<IProps> {
-  componentDidMount () {
-    //addThis.load()
-  }
-
   render () {
     const { html, frontmatter, fields } = this.props.data.post
     const { classes } = this.props
@@ -92,7 +88,7 @@ class BlogPost extends React.Component<IProps> {
           <ReadingProgressBar>
             <h1 className={classes.title}>{frontmatter.title}</h1>
             <p className={classes.date}>Atualizado em {translateDate(frontmatter.updatedDate)}</p>
-            <section dangerouslySetInnerHTML={{ __html: html }} />
+            <section dangerouslySetInnerHTML={{ __html: html as string }} />
             <p className={classes.date}>Publicado em {translateDate(frontmatter.createdDate)}</p>
           </ReadingProgressBar>
         </article>

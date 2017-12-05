@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import * as classnames from 'classnames'
 import {
   StyleRules,
   StyledComponentProps,
@@ -17,12 +17,20 @@ const styles: StyleRules = {
 
 interface IContainerProps extends StyledComponentProps<keyof typeof styles> {
   children?: React.ReactNode
+  className: string
 }
 
-const Container = ({ classes, children }: IContainerProps & WithStyles) => (
- <div className={classes.root}>
-   {children}
- </div>
-)
+const Container = (props: IContainerProps & WithStyles) => {
+  const classNames = classnames({
+    [props.classes.root]: true,
+    [props.className]: true
+  })
+  
+  return (
+    <div className={classNames}>
+      {props.children}
+    </div>
+  )
+}
 
 export default withStyles(styles)(Container)

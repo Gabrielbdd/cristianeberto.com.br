@@ -15,6 +15,7 @@ const styles = {
   root: {
     width: '100%',
     flex: 1,
+    margin: '0',
     padding: '40px'
   }
 }

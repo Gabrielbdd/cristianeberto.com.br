@@ -26,7 +26,6 @@ class DefaultLayout extends React.Component<IProps> {
   }
 
   componentDidMount () {
-    //freshDesk.load()
     freshDesk.init()
   }
 
@@ -48,9 +47,7 @@ class DefaultLayout extends React.Component<IProps> {
               onChange={this.handletabChange}
               indicatorColor="primary"
               textColor="primary"
-              scrollButtons="auto"
               scrollable
-              style={{ justifyContent: 'center' }}
               fullWidth
             >
               <Tab label="Home" />
