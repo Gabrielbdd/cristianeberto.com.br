@@ -27,7 +27,8 @@ const BASE_URL = 'https://cristianeberto.com.br'
 
 const styles: StyleRules = {
   root: {
-    maxWidth: 345
+    maxWidth: 320,
+    margin: '0 auto'
   },
 
   media: {
@@ -86,7 +87,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
     let open = !!anchorEl
 
     return (
-      <Card className={classes && classes.root}>
+      <Card className={classes.root}>
         <Img sizes={sizes} resolutions={resolutions} />
         <CardContent>
           <Typography type="headline" component="h2" gutterBottom>

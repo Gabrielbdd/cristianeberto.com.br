@@ -38,7 +38,8 @@ const PostsView = ({ posts, classes }: IPostsViewProps) => (
         return (
           <Grid
             item
-            xl={8}
+            xs={12}
+            sm={5}
             key={slug}
           >
             <Post

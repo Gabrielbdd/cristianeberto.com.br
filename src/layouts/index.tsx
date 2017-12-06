@@ -1,10 +1,36 @@
 import * as React from 'react'
 import { Tabs, Tab } from 'material-ui'
+import {
+  StyleRules,
+  WithStyles,
+  Theme,
+
+  withStyles
+} from 'material-ui/styles'
 
 import './index.css'
 
 import * as freshDesk from '../freshChat'
+import Footer from '../components/Footer'
 import Container from '../components/Container'
+
+import returnType from '../utils/returnType'
+
+const styles = (theme: Theme): StyleRules => ({
+  root: {
+    '& a': {
+      textDecoration: 'none',
+      color: 'inherit',
+      transition: `color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn}`,
+
+      '&:hover': {
+        color: theme.palette.primary[500]
+      }
+    }
+  }
+})
+
+const stylesType = returnType(styles)
 
 const tabPaths = [
   '/',
@@ -14,7 +40,7 @@ const tabPaths = [
   '/contato'
 ]
 
-interface IProps {
+interface IProps extends WithStyles<keyof typeof stylesType> {
   children: any
   location: any
   history: any
@@ -30,6 +56,7 @@ class DefaultLayout extends React.Component<IProps> {
   }
 
   render () {
+    const { classes } = this.props
     const activeTab = tabPaths.slice(1).findIndex((tabPath, index) => {
       if (tabPath === '/') {
         return this.props.location.pathname === tabPath
@@ -39,7 +66,7 @@ class DefaultLayout extends React.Component<IProps> {
     }) + 1 || 0
 
     return (
-      <div>
+      <div className={classes.root}>
         <header>
           <Container>
             <Tabs
@@ -58,10 +85,13 @@ class DefaultLayout extends React.Component<IProps> {
             </Tabs>
           </Container>
         </header>
+
         {this.props.children()}
+
+        <Footer />
       </div>
     )
   }
 }
 
-export default DefaultLayout
+export default withStyles(styles)(DefaultLayout)
