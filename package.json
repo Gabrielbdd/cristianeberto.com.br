@@ -26,6 +26,7 @@
     "gatsby-link": "latest",
     "gatsby-plugin-manifest": "latest",
     "gatsby-plugin-offline": "latest",
+    "gatsby-plugin-react-helmet": "^2.0.2",
     "gatsby-plugin-sharp": "latest",
     "gatsby-plugin-typescript": "latest",
     "gatsby-remark-autolink-headers": "latest",

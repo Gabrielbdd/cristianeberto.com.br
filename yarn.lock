@@ -3742,6 +3742,12 @@ gatsby-plugin-offline@latest:
     babel-runtime "^6.26.0"
     sw-precache "^5.0.0"
 
+gatsby-plugin-react-helmet@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-2.0.2.tgz#46294bc66872499f9dc8f0a5c0e0d029b0e3c994"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 gatsby-plugin-sharp@^1.6.21, gatsby-plugin-sharp@latest:
   version "1.6.21"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-1.6.21.tgz#990e856153b65be28316c23ab29b4e78dd5634de"
