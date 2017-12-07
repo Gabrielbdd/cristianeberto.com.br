@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Helmet from 'react-helmet'
 import { Tabs, Tab } from 'material-ui'
 import {
   StyleRules,
@@ -67,6 +68,11 @@ class DefaultLayout extends React.Component<IProps> {
 
     return (
       <div className={classes.root}>
+        <Helmet defaultTitle="Cristiane Berto" titleTemplate="%s | Cristiane Berto">
+          <meta name="og:type" content="website" />
+          <meta name="og:site_name" content="Cristiane Berto" />
+          <html lang="pt-br" />
+        </Helmet>
         <header>
           <Container>
             <Tabs

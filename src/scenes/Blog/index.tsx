@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Helmet from 'react-helmet'
 
 import { MarkdownRemarkConnection, ImageSharp } from '../../graphql-types'
 
@@ -29,6 +30,9 @@ const Blog = (props: IProps) => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
       <PostsView posts={props.data.posts.edges} />
       <Pagination
         actualPage={`/blog/page/${actualPage}`}
