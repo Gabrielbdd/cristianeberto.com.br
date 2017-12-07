@@ -40,19 +40,7 @@ export const pageQuery = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  resolutions(width: 320, height: 200) {
-                    base64
-                    tracedSVG
-                    aspectRatio
-                    width
-                    height
-                    src
-                    srcSet
-                    srcWebp
-                    srcSetWebp
-                    originalName
-                  }
-                  sizes(maxWidth: 320, maxHeight: 200) {
+                  sizes(maxWidth: 350, maxHeight: 200) {
                     base64
                     tracedSVG
                     aspectRatio

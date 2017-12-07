@@ -1,10 +1,10 @@
-import BlogPost from "../scenes/BlogPost";
+import BlogPost from '../scenes/BlogPost'
 
-export default BlogPost;
+export default BlogPost
 
 export const pageQuery = graphql`
   query TemplateBlogPost($slug: String!) {
-    post: markdownRemark(fields: {slug: {eq: $slug}}) {
+    post: markdownRemark(fields: { slug:  { eq: $slug } }) {
       html
       excerpt
       timeToRead
@@ -44,11 +44,11 @@ export const pageQuery = graphql`
     }
     recents: allMarkdownRemark(
       filter: {
-        fields: {slug: {ne: $slug}}
-        frontmatter: {draft: {ne: true}},
-        fileAbsolutePath: {regex: "/blog/"},
+        fields: { slug: { ne: $slug } }
+        frontmatter: { draft: { ne: true } },
+        fileAbsolutePath: { regex: "/blog/" },
       },
-      sort: {order: DESC, fields: [frontmatter___updatedDate]},
+      sort: { order: DESC, fields: [ frontmatter___updatedDate ] },
       limit: 4
     ) {
       edges {
