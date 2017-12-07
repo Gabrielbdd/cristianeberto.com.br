@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import { Divider } from 'material-ui'
 import {
@@ -14,8 +15,8 @@ import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from '../../grap
 import translateDate from '../../utils/translateDate'
 import returnType from '../../utils/returnType'
 import Disqus from '../../components/Disqus'
-import ReadingProgressBar from './ReadingProgressBar'
-import Author from './Author'
+import ReadingProgressBar from './components/ReadingProgressBar'
+import Author from './components/Author'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
@@ -84,6 +85,9 @@ class BlogPost extends React.Component<IProps> {
   
     return (
       <div className={classes.root}>
+        <Helmet>
+          <title>{`${frontmatter.title} | Blog`}</title>
+        </Helmet>
         <article>
           <ReadingProgressBar>
             <h1 className={classes.title}>{frontmatter.title}</h1>
