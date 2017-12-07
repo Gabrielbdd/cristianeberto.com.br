@@ -21,19 +21,32 @@ import Author from './components/Author'
 const styles = (theme: Theme): StyleRules => ({
   root: {
     maxWidth: '1000px',
-    padding: '10px 20px',
+    padding: '30px 20px',
     margin: '0 auto',
     color: theme.palette.text.primary,
     
-    '& article p': {
+    '& p': {
       fontSize: '1.1em',
       letterSpacing: '.01em',
-      lineHeight: '1.45em'
+      lineHeight: '1.58',
+    },
+
+    '& h2': {
+      margin: '30px 0 20px'
+    },
+
+    '& li': {
+      listStyle: 'inside',
+      marginLeft: '30px'
+    },
+
+    '& ul': {
+      marginTop: '10px'
     }
   },
 
   title: {
-    marginBottom: '30px',
+    marginBottom: '20px',
     textAlign: 'center',
     color: theme.palette.primary[500],
     fontSize: '1.5em',
@@ -49,6 +62,7 @@ const styles = (theme: Theme): StyleRules => ({
   },
 
   date: {
+    padding: '15px 0',
     fontSize: '13px !important',
     fontStyle: 'italic',
     textAlign: 'center'
@@ -84,21 +98,22 @@ class BlogPost extends React.Component<IProps> {
     const { classes } = this.props
   
     return (
-      <div className={classes.root}>
+      <article className={classes.root}>
         <Helmet>
           <title>{`${frontmatter.title} | Blog`}</title>
         </Helmet>
-        <article>
-          <ReadingProgressBar>
-            <h1 className={classes.title}>{frontmatter.title}</h1>
-            <p className={classes.date}>Atualizado em {translateDate(frontmatter.updatedDate)}</p>
-            <section dangerouslySetInnerHTML={{ __html: html as string }} />
-            <p className={classes.date}>Publicado em {translateDate(frontmatter.createdDate)}</p>
-          </ReadingProgressBar>
-        </article>
+
+        <ReadingProgressBar>
+          <h1 className={classes.title}>{frontmatter.title}</h1>
+          <p className={classes.date}>Atualizado em {translateDate(frontmatter.updatedDate)}</p>
+          <section dangerouslySetInnerHTML={{ __html: html as string }} />
+          <p className={classes.date}>Publicado em {translateDate(frontmatter.createdDate)}</p>
+        </ReadingProgressBar>
 
         <Divider />
-          <Author author={frontmatter.author} />
+
+        <Author author={frontmatter.author} />
+
         <Divider />
 
         <Disqus
@@ -107,7 +122,7 @@ class BlogPost extends React.Component<IProps> {
           title={frontmatter.title}
           url={`http://cristianeberto.com.br${fields.slug}`}
         />
-      </div>
+      </article>
     )
   }
 }
