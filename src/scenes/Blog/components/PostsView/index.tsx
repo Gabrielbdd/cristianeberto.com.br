@@ -1,26 +1,31 @@
 import * as React from 'react'
-import {
-  StyledComponentProps,
-
-  withStyles,
-
-  Grid
-} from 'material-ui'
+import { Grid } from 'material-ui'
+import { Theme, WithStyles, StyledComponentProps, withStyles } from 'material-ui/styles'
 
 import { ImageSharp, MarkdownRemarkEdge } from '../../../../graphql-types'
 
+import returnType from '../../../../utils/returnType'
+
 import Post from './Post'
 
-const styles = {
+const styles = (theme: Theme) => ({
   root: {
     width: '100%',
     flex: 1,
     margin: '0',
-    padding: '40px'
-  }
-}
+    padding: '10px'
+  },
 
-interface IPostsViewProps extends StyledComponentProps {
+  [theme.breakpoints.up('md')]: {
+    root: {
+      padding: '40px 110px'
+    }
+  }
+})
+
+const stylesType = returnType(styles)
+
+interface IPostsViewProps extends  WithStyles<keyof typeof stylesType> {
   posts: MarkdownRemarkEdge[]
 }
 
@@ -34,18 +39,17 @@ const PostsView = ({ posts, classes }: IPostsViewProps) => (
       const { frontmatter, timeToRead, fields: { slug }, excerpt } = node
       const cover = frontmatter.image.children[0] as ImageSharp
   
-      if (cover.sizes && cover.resolutions) {
+      if (cover.sizes) {
         return (
           <Grid
             item
             xs={12}
-            sm={5}
+            md={6}
             key={slug}
           >
             <Post
               title={frontmatter.title}
               slug={slug}
-              resolutions={cover.resolutions}
               sizes={cover.sizes}
               content={excerpt}
             />

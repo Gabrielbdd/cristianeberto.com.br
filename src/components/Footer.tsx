@@ -132,6 +132,7 @@ class Footer extends React.Component<IProps> {
     return (
       <Grid className={classes.root} container spacing={0} justify="center" component="footer">
         <Grid
+          item
           xs={12}
           md={4}
           className="navigation"
@@ -152,6 +153,7 @@ class Footer extends React.Component<IProps> {
           </div>
         </Grid>
         <Grid
+          item
           xs={12}
           md={4}
           className="contact"
@@ -172,6 +174,7 @@ class Footer extends React.Component<IProps> {
           </div>
         </Grid>
         <Grid
+          item
           xs={12}
           md={4}
           className="social"

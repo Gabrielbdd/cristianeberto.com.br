@@ -21,13 +21,13 @@ import {
 import { Share } from 'material-ui-icons'
 
 import SocialShareList, { SocialMedia } from './SocialShareList'
-import { ImageSharpSizes, ImageSharpResolutions } from '../../../../graphql-types'
+import { ImageSharpSizes } from '../../../../graphql-types'
 
 const BASE_URL = 'https://cristianeberto.com.br'
 
 const styles: StyleRules = {
   root: {
-    maxWidth: 320,
+    maxWidth: 350,
     margin: '0 auto'
   },
 
@@ -44,7 +44,6 @@ interface IPostProps extends StyledComponentProps {
   title: string
   slug: string
   content: string
-  resolutions: ImageSharpResolutions
   sizes: ImageSharpSizes
 }
 
@@ -64,7 +63,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
   }
 
   render () {
-    const { title, slug, content, classes, resolutions, sizes } = this.props
+    const { title, slug, content, classes, sizes } = this.props
     const socialMedias: [SocialMedia] = [
       {
         name: 'Facebook',
@@ -88,7 +87,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
 
     return (
       <Card className={classes.root}>
-        <Img sizes={sizes} resolutions={resolutions} />
+        <Img sizes={sizes} />
         <CardContent>
           <Typography type="headline" component="h2" gutterBottom>
             {title}
@@ -98,7 +97,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
           </Typography>
         </CardContent>
         <Divider light />
-        <CardActions className={classes && classes.actions}>
+        <CardActions className={classes.actions}>
           <Button color="accent" onClick={() => navigateTo(slug)}>
             Ler mais
           </Button>

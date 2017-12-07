@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Helmet from 'react-helmet'
 import { Grid, Typography } from 'material-ui'
 import {
   StyleRules,
@@ -25,9 +26,9 @@ import returnType from '../../utils/returnType'
 const styles = (theme: Theme): StyleRules => ({
   root: {
     position: 'relative',
-    maxWidth: '800px',
+    maxWidth: '350px',
     margin: '0 auto',
-    padding: '40px 10px',
+    padding: '40px 0',
     color: theme.palette.grey.A400,
 
     '& > *': {
@@ -92,6 +93,17 @@ const styles = (theme: Theme): StyleRules => ({
       height: '125px',
       marginRight: '15px'
     }
+  },
+
+  [theme.breakpoints.up('md')]: {
+    root: {
+      padding: '40px',
+      maxWidth: '960px'
+    },
+
+    categories__detail__description: {
+      marginTop: '0'
+    },
   }
 })
 
@@ -118,6 +130,10 @@ class Serviços extends React.Component<IProps & WithStyles> {
 
     return (
       <div className={classes.root}>
+        <Helmet>
+          <title>Serviços</title>
+        </Helmet>
+
         {Object.keys(servicesGroup).map(categoryKey => {
           const category = categoriesMap.get(categoryKey)
           const details  = category.frontmatter
