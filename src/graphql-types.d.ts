@@ -7,9 +7,7 @@ export interface RootQueryType {
   allFile: FileConnection | null;
   allImageSharp: ImageSharpConnection | null;
   allMarkdownRemark: MarkdownRemarkConnection | null;
-  allServicesJson: ServicesJsonConnection | null;
   allAuthorJson: AuthorJsonConnection | null;
-  allCategoriesJson: CategoriesJsonConnection | null;
   sitePage: SitePage | null;
   sitePlugin: SitePlugin | null;
   site: Site | null;
@@ -17,9 +15,7 @@ export interface RootQueryType {
   file: File | null;
   imageSharp: ImageSharp | null;
   markdownRemark: MarkdownRemark | null;
-  servicesJson: ServicesJson | null;
   authorJson: AuthorJson | null;
-  categoriesJson: CategoriesJson | null;
 }
 
 export interface AllSitePageRootQueryTypeArgs {
@@ -64,25 +60,11 @@ export interface AllMarkdownRemarkRootQueryTypeArgs {
   filter: filterMarkdownRemark | null;
 }
 
-export interface AllServicesJsonRootQueryTypeArgs {
-  skip: number | null;
-  limit: number | null;
-  sort: servicesJsonConnectionSort | null;
-  filter: filterServicesJson | null;
-}
-
 export interface AllAuthorJsonRootQueryTypeArgs {
   skip: number | null;
   limit: number | null;
   sort: authorJsonConnectionSort | null;
   filter: filterAuthorJson | null;
-}
-
-export interface AllCategoriesJsonRootQueryTypeArgs {
-  skip: number | null;
-  limit: number | null;
-  sort: categoriesJsonConnectionSort | null;
-  filter: filterCategoriesJson | null;
 }
 
 export interface SitePageRootQueryTypeArgs {
@@ -217,29 +199,11 @@ export interface MarkdownRemarkRootQueryTypeArgs {
   wordCount: wordCountTypeName_3 | null;
 }
 
-export interface ServicesJsonRootQueryTypeArgs {
-  category: servicesJsonCategoryQueryString_2 | null;
-  name: servicesJsonNameQueryString_2 | null;
-  description: servicesJsonDescriptionQueryString_2 | null;
-  price: servicesJsonPriceQueryInteger_2 | null;
-  session_time: servicesJsonSessionTimeQueryString_2 | null;
-  id: servicesJsonIdQueryString_2 | null;
-  internal: servicesJsonInternalInputObject_2 | null;
-}
-
 export interface AuthorJsonRootQueryTypeArgs {
   id: authorJsonIdQueryString_2 | null;
   bio: authorJsonBioQueryString_2 | null;
   avatar: authorJsonAvatarQueryString_2 | null;
   internal: authorJsonInternalInputObject_2 | null;
-}
-
-export interface CategoriesJsonRootQueryTypeArgs {
-  name: categoriesJsonNameQueryString_2 | null;
-  description: categoriesJsonDescriptionQueryString_2 | null;
-  image: categoriesJsonImageQueryString_2 | null;
-  id: categoriesJsonIdQueryString_2 | null;
-  internal: categoriesJsonInternalInputObject_2 | null;
 }
 
 export interface sitePageConnectionSort {
@@ -429,7 +393,7 @@ export interface SitePage extends Node {
   pluginCreator: SitePlugin | null;
   pluginCreatorId: string | null;
   componentPath: string | null;
-  internal: internal_11 | null;
+  internal: internal_9 | null;
 }
 
 export interface Node {
@@ -455,7 +419,7 @@ export interface SitePlugin extends Node {
   nodeAPIs: Array<string> | null;
   pluginFilepath: string | null;
   packageJson: packageJson_2 | null;
-  internal: internal_12 | null;
+  internal: internal_10 | null;
 }
 
 export interface pluginOptions_3 {
@@ -515,13 +479,13 @@ export interface devDependencies_2 {
   version: string | null;
 }
 
-export interface internal_12 {
+export interface internal_10 {
   contentDigest: string | null;
   type: string | null;
   owner: string | null;
 }
 
-export interface internal_11 {
+export interface internal_9 {
   type: string | null;
   contentDigest: string | null;
   owner: string | null;
@@ -1275,7 +1239,7 @@ export interface Directory extends Node {
   id: string;
   parent: Node | null;
   children: Array<Node> | null;
-  internal: internal_13 | null;
+  internal: internal_11 | null;
   sourceInstanceName: string | null;
   absolutePath: string | null;
   relativePath: string | null;
@@ -1363,7 +1327,7 @@ export interface BirthtimeDirectoryArgs {
   locale: string | null;
 }
 
-export interface internal_13 {
+export interface internal_11 {
   contentDigest: string | null;
   type: string | null;
   owner: string | null;
@@ -1684,11 +1648,9 @@ export interface File extends Node {
   parent: Node | null;
   children: Array<Node> | null;
   childAuthorJson: AuthorJson | null;
-  childImageSharp: ImageSharp | null;
-  childServicesJson: ServicesJson | null;
   childMarkdownRemark: MarkdownRemark | null;
-  childCategoriesJson: CategoriesJson | null;
-  internal: internal_14 | null;
+  childImageSharp: ImageSharp | null;
+  internal: internal_12 | null;
   sourceInstanceName: string | null;
   absolutePath: string | null;
   relativePath: string | null;
@@ -1782,20 +1744,106 @@ export interface AuthorJson extends Node {
   children: Array<Node> | null;
   bio: string | null;
   avatar: File | null;
-  internal: internal_15 | null;
+  internal: internal_13 | null;
 }
 
-export interface internal_15 {
+export interface internal_13 {
   contentDigest: string | null;
   type: string | null;
   owner: string | null;
+}
+
+export interface MarkdownRemark extends Node {
+  id: string;
+  parent: Node | null;
+  children: Array<Node> | null;
+  internal: internal_14 | null;
+  frontmatter: frontmatter_2 | null;
+  fileAbsolutePath: string | null;
+  fields: fields_2 | null;
+  html: string | null;
+  excerpt: string | null;
+  headings: Array<MarkdownHeading> | null;
+  timeToRead: number | null;
+  tableOfContents: string | null;
+  wordCount: wordCount | null;
+}
+
+export interface ExcerptMarkdownRemarkArgs {
+  pruneLength: number | null;
+}
+
+export interface HeadingsMarkdownRemarkArgs {
+  depth: HeadingLevels | null;
+}
+
+export interface internal_14 {
+  content: string | null;
+  contentDigest: string | null;
+  type: string | null;
+  owner: string | null;
+  fieldOwners: fieldOwners_2 | null;
+}
+
+export interface fieldOwners_2 {
+  slug: string | null;
+}
+
+export interface frontmatter_2 {
+  title: string | null;
+  category: string | null;
+  name: string | null;
+  price: number | null;
+  time: number | null;
+  _PARENT: string | null;
+  parent: string | null;
+  createdDate: string | null;
+  updatedDate: string | null;
+  author: AuthorJson | null;
+  tags: Array<string> | null;
+  image: File | null;
+  draft: boolean | null;
+  description: string | null;
+  position: string | null;
+  order: number | null;
+}
+
+export interface CreatedDatefrontmatter_2Args {
+  formatString: string | null;
+  fromNow: boolean | null;
+  difference: string | null;
+  locale: string | null;
+}
+
+export interface UpdatedDatefrontmatter_2Args {
+  formatString: string | null;
+  fromNow: boolean | null;
+  difference: string | null;
+  locale: string | null;
+}
+
+export interface fields_2 {
+  slug: string | null;
+}
+
+export type HeadingLevels = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+export interface MarkdownHeading {
+  value: string | null;
+  depth: number | null;
+}
+
+export interface wordCount {
+  paragraphs: number | null;
+  sentences: number | null;
+  words: number | null;
 }
 
 export interface ImageSharp extends Node {
   id: string;
   parent: Node | null;
   children: Array<Node> | null;
-  internal: internal_16 | null;
+  internal: internal_15 | null;
   original: ImageSharpOriginal | null;
   resolutions: ImageSharpResolutions | null;
   sizes: ImageSharpSizes | null;
@@ -1869,7 +1917,7 @@ export interface ResizeImageSharpArgs {
   rotate: number | null;
 }
 
-export interface internal_16 {
+export interface internal_15 {
   contentDigest: string | null;
   type: string | null;
   owner: string | null;
@@ -1960,125 +2008,7 @@ export interface ImageSharpResize {
   originalName: string | null;
 }
 
-export interface ServicesJson extends Node {
-  id: string;
-  parent: Node | null;
-  children: Array<Node> | null;
-  category: string | null;
-  name: string | null;
-  description: string | null;
-  price: number | null;
-  session_time: string | null;
-  internal: internal_17 | null;
-}
-
-export interface internal_17 {
-  contentDigest: string | null;
-  type: string | null;
-  owner: string | null;
-}
-
-export interface MarkdownRemark extends Node {
-  id: string;
-  parent: Node | null;
-  children: Array<Node> | null;
-  internal: internal_18 | null;
-  frontmatter: frontmatter_2 | null;
-  fileAbsolutePath: string | null;
-  fields: fields_2 | null;
-  html: string | null;
-  excerpt: string | null;
-  headings: Array<MarkdownHeading> | null;
-  timeToRead: number | null;
-  tableOfContents: string | null;
-  wordCount: wordCount | null;
-}
-
-export interface ExcerptMarkdownRemarkArgs {
-  pruneLength: number | null;
-}
-
-export interface HeadingsMarkdownRemarkArgs {
-  depth: HeadingLevels | null;
-}
-
-export interface internal_18 {
-  content: string | null;
-  contentDigest: string | null;
-  type: string | null;
-  owner: string | null;
-  fieldOwners: fieldOwners_2 | null;
-}
-
-export interface fieldOwners_2 {
-  slug: string | null;
-}
-
-export interface frontmatter_2 {
-  title: string | null;
-  createdDate: string | null;
-  updatedDate: string | null;
-  author: AuthorJson | null;
-  tags: Array<string> | null;
-  image: File | null;
-  draft: boolean | null;
-  _PARENT: string | null;
-  parent: string | null;
-  category: string | null;
-  price: number | null;
-  time: number | null;
-  name: string | null;
-  description: string | null;
-}
-
-export interface CreatedDatefrontmatter_2Args {
-  formatString: string | null;
-  fromNow: boolean | null;
-  difference: string | null;
-  locale: string | null;
-}
-
-export interface UpdatedDatefrontmatter_2Args {
-  formatString: string | null;
-  fromNow: boolean | null;
-  difference: string | null;
-  locale: string | null;
-}
-
-export interface fields_2 {
-  slug: string | null;
-}
-
-export type HeadingLevels = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
-export interface MarkdownHeading {
-  value: string | null;
-  depth: number | null;
-}
-
-export interface wordCount {
-  paragraphs: number | null;
-  sentences: number | null;
-  words: number | null;
-}
-
-export interface CategoriesJson extends Node {
-  id: string;
-  parent: Node | null;
-  children: Array<Node> | null;
-  name: string | null;
-  description: string | null;
-  image: File | null;
-  internal: internal_19 | null;
-}
-
-export interface internal_19 {
-  contentDigest: string | null;
-  type: string | null;
-  owner: string | null;
-}
-
-export interface internal_14 {
+export interface internal_12 {
   contentDigest: string | null;
   mediaType: string | null;
   type: string | null;
@@ -2540,7 +2470,7 @@ export interface markdownRemarkConnectionSort {
   order: markdownRemarkConnectionSortOrderValues | null;
 }
 
-export type MarkdownRemarkConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___category" | "frontmatter___price" | "frontmatter___time" | "frontmatter___name" | "frontmatter___description" | "fileAbsolutePath" | "fields___slug" | "html" | "excerpt" | "headings" | "timeToRead" | "tableOfContents" | "wordCount___paragraphs" | "wordCount___sentences" | "wordCount___words";
+export type MarkdownRemarkConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___category" | "frontmatter___name" | "frontmatter___price" | "frontmatter___time" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter___description" | "frontmatter___position" | "frontmatter___order" | "fileAbsolutePath" | "fields___slug" | "html" | "excerpt" | "headings" | "timeToRead" | "tableOfContents" | "wordCount___paragraphs" | "wordCount___sentences" | "wordCount___words";
 
 export type markdownRemarkConnectionSortOrderValues = "ASC" | "DESC";
 
@@ -2614,22 +2544,62 @@ export interface markdownRemarkConnectionInternalFieldOwnersSlugQueryString_2 {
 
 export interface markdownRemarkConnectionFrontmatterInputObject_2 {
   title: markdownRemarkConnectionFrontmatterTitleQueryString_2 | null;
+  category: markdownRemarkConnectionFrontmatterCategoryQueryString_2 | null;
+  name: markdownRemarkConnectionFrontmatterNameQueryString_2 | null;
+  price: markdownRemarkConnectionFrontmatterPriceQueryInteger_2 | null;
+  time: markdownRemarkConnectionFrontmatterTimeQueryInteger_2 | null;
+  _PARENT: markdownRemarkConnectionFrontmatterParentQueryString_3 | null;
+  parent: markdownRemarkConnectionFrontmatterParentQueryString_4 | null;
   createdDate: markdownRemarkConnectionFrontmatterCreatedDateQueryString_2 | null;
   updatedDate: markdownRemarkConnectionFrontmatterUpdatedDateQueryString_2 | null;
   author: markdownRemarkConnectionFrontmatterAuthorQueryString_2 | null;
   tags: markdownRemarkConnectionFrontmatterTagsQueryList_2 | null;
   image: markdownRemarkConnectionFrontmatterImageQueryString_2 | null;
   draft: markdownRemarkConnectionFrontmatterDraftQueryBoolean_2 | null;
-  _PARENT: markdownRemarkConnectionFrontmatterParentQueryString_3 | null;
-  parent: markdownRemarkConnectionFrontmatterParentQueryString_4 | null;
-  category: markdownRemarkConnectionFrontmatterCategoryQueryString_2 | null;
-  price: markdownRemarkConnectionFrontmatterPriceQueryInteger_2 | null;
-  time: markdownRemarkConnectionFrontmatterTimeQueryInteger_2 | null;
-  name: markdownRemarkConnectionFrontmatterNameQueryString_2 | null;
   description: markdownRemarkConnectionFrontmatterDescriptionQueryString_2 | null;
+  position: markdownRemarkConnectionFrontmatterPositionQueryString_2 | null;
+  order: markdownRemarkConnectionFrontmatterOrderQueryInteger_2 | null;
 }
 
 export interface markdownRemarkConnectionFrontmatterTitleQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterCategoryQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterNameQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterPriceQueryInteger_2 {
+  eq: number | null;
+  ne: number | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterTimeQueryInteger_2 {
+  eq: number | null;
+  ne: number | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterParentQueryString_3 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterParentQueryString_4 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
@@ -2677,49 +2647,23 @@ export interface markdownRemarkConnectionFrontmatterDraftQueryBoolean_2 {
   ne: boolean | null;
 }
 
-export interface markdownRemarkConnectionFrontmatterParentQueryString_3 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface markdownRemarkConnectionFrontmatterParentQueryString_4 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface markdownRemarkConnectionFrontmatterCategoryQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface markdownRemarkConnectionFrontmatterPriceQueryInteger_2 {
-  eq: number | null;
-  ne: number | null;
-}
-
-export interface markdownRemarkConnectionFrontmatterTimeQueryInteger_2 {
-  eq: number | null;
-  ne: number | null;
-}
-
-export interface markdownRemarkConnectionFrontmatterNameQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
 export interface markdownRemarkConnectionFrontmatterDescriptionQueryString_2 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterPositionQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkConnectionFrontmatterOrderQueryInteger_2 {
+  eq: number | null;
+  ne: number | null;
 }
 
 export interface markdownRemarkConnectionFileAbsolutePathQueryString_2 {
@@ -2834,9 +2778,9 @@ export interface MarkdownRemarkEdge {
   previous: MarkdownRemark | null;
 }
 
-export type markdownRemarkDistinctEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___category" | "frontmatter___price" | "frontmatter___time" | "frontmatter___name" | "frontmatter___description" | "fileAbsolutePath" | "fields___slug";
+export type markdownRemarkDistinctEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___category" | "frontmatter___name" | "frontmatter___price" | "frontmatter___time" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter___description" | "frontmatter___position" | "frontmatter___order" | "fileAbsolutePath" | "fields___slug";
 
-export type markdownRemarkGroupEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___category" | "frontmatter___price" | "frontmatter___time" | "frontmatter___name" | "frontmatter___description" | "fileAbsolutePath" | "fields___slug";
+export type markdownRemarkGroupEnum = "id" | "parent" | "internal___content" | "internal___contentDigest" | "internal___type" | "internal___owner" | "internal___fieldOwners___slug" | "frontmatter___title" | "frontmatter___category" | "frontmatter___name" | "frontmatter___price" | "frontmatter___time" | "frontmatter____PARENT" | "frontmatter___parent" | "frontmatter___createdDate" | "frontmatter___updatedDate" | "frontmatter___author" | "frontmatter___tags" | "frontmatter___image" | "frontmatter___draft" | "frontmatter___description" | "frontmatter___position" | "frontmatter___order" | "fileAbsolutePath" | "fields___slug";
 
 export interface markdownRemarkGroupConnectionConnection {
   pageInfo: PageInfo;
@@ -2850,134 +2794,6 @@ export interface markdownRemarkGroupConnectionEdge {
   node: MarkdownRemark | null;
   next: MarkdownRemark | null;
   previous: MarkdownRemark | null;
-}
-
-export interface servicesJsonConnectionSort {
-  fields: Array<ServicesJsonConnectionSortByFieldsEnum>;
-  order: servicesJsonConnectionSortOrderValues | null;
-}
-
-export type ServicesJsonConnectionSortByFieldsEnum = "category" | "name" | "description" | "price" | "session_time" | "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
-
-export type servicesJsonConnectionSortOrderValues = "ASC" | "DESC";
-
-export interface filterServicesJson {
-  category: servicesJsonConnectionCategoryQueryString_2 | null;
-  name: servicesJsonConnectionNameQueryString_2 | null;
-  description: servicesJsonConnectionDescriptionQueryString_2 | null;
-  price: servicesJsonConnectionPriceQueryInteger_2 | null;
-  session_time: servicesJsonConnectionSessionTimeQueryString_2 | null;
-  id: servicesJsonConnectionIdQueryString_2 | null;
-  internal: servicesJsonConnectionInternalInputObject_2 | null;
-}
-
-export interface servicesJsonConnectionCategoryQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionNameQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionDescriptionQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionPriceQueryInteger_2 {
-  eq: number | null;
-  ne: number | null;
-}
-
-export interface servicesJsonConnectionSessionTimeQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionIdQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionInternalInputObject_2 {
-  contentDigest: servicesJsonConnectionInternalContentDigestQueryString_2 | null;
-  type: servicesJsonConnectionInternalTypeQueryString_2 | null;
-  owner: servicesJsonConnectionInternalOwnerQueryString_2 | null;
-}
-
-export interface servicesJsonConnectionInternalContentDigestQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionInternalTypeQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonConnectionInternalOwnerQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface ServicesJsonConnection {
-  pageInfo: PageInfo;
-  edges: Array<ServicesJsonEdge> | null;
-  totalCount: number | null;
-  distinct: Array<string> | null;
-  group: Array<servicesJsonGroupConnectionConnection> | null;
-}
-
-export interface DistinctServicesJsonConnectionArgs {
-  field: servicesJsonDistinctEnum | null;
-}
-
-export interface GroupServicesJsonConnectionArgs {
-  skip: number | null;
-  limit: number | null;
-  field: servicesJsonGroupEnum | null;
-}
-
-export interface ServicesJsonEdge {
-  node: ServicesJson | null;
-  next: ServicesJson | null;
-  previous: ServicesJson | null;
-}
-
-export type servicesJsonDistinctEnum = "category" | "name" | "description" | "price" | "session_time" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
-
-export type servicesJsonGroupEnum = "category" | "name" | "description" | "price" | "session_time" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
-
-export interface servicesJsonGroupConnectionConnection {
-  pageInfo: PageInfo;
-  edges: Array<servicesJsonGroupConnectionEdge> | null;
-  field: string | null;
-  fieldValue: string | null;
-  totalCount: number | null;
-}
-
-export interface servicesJsonGroupConnectionEdge {
-  node: ServicesJson | null;
-  next: ServicesJson | null;
-  previous: ServicesJson | null;
 }
 
 export interface authorJsonConnectionSort {
@@ -3084,120 +2900,6 @@ export interface authorJsonGroupConnectionEdge {
   node: AuthorJson | null;
   next: AuthorJson | null;
   previous: AuthorJson | null;
-}
-
-export interface categoriesJsonConnectionSort {
-  fields: Array<CategoriesJsonConnectionSortByFieldsEnum>;
-  order: categoriesJsonConnectionSortOrderValues | null;
-}
-
-export type CategoriesJsonConnectionSortByFieldsEnum = "name" | "description" | "image" | "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
-
-export type categoriesJsonConnectionSortOrderValues = "ASC" | "DESC";
-
-export interface filterCategoriesJson {
-  name: categoriesJsonConnectionNameQueryString_2 | null;
-  description: categoriesJsonConnectionDescriptionQueryString_2 | null;
-  image: categoriesJsonConnectionImageQueryString_2 | null;
-  id: categoriesJsonConnectionIdQueryString_2 | null;
-  internal: categoriesJsonConnectionInternalInputObject_2 | null;
-}
-
-export interface categoriesJsonConnectionNameQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonConnectionDescriptionQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonConnectionImageQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonConnectionIdQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonConnectionInternalInputObject_2 {
-  contentDigest: categoriesJsonConnectionInternalContentDigestQueryString_2 | null;
-  type: categoriesJsonConnectionInternalTypeQueryString_2 | null;
-  owner: categoriesJsonConnectionInternalOwnerQueryString_2 | null;
-}
-
-export interface categoriesJsonConnectionInternalContentDigestQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonConnectionInternalTypeQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonConnectionInternalOwnerQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface CategoriesJsonConnection {
-  pageInfo: PageInfo;
-  edges: Array<CategoriesJsonEdge> | null;
-  totalCount: number | null;
-  distinct: Array<string> | null;
-  group: Array<categoriesJsonGroupConnectionConnection> | null;
-}
-
-export interface DistinctCategoriesJsonConnectionArgs {
-  field: categoriesJsonDistinctEnum | null;
-}
-
-export interface GroupCategoriesJsonConnectionArgs {
-  skip: number | null;
-  limit: number | null;
-  field: categoriesJsonGroupEnum | null;
-}
-
-export interface CategoriesJsonEdge {
-  node: CategoriesJson | null;
-  next: CategoriesJson | null;
-  previous: CategoriesJson | null;
-}
-
-export type categoriesJsonDistinctEnum = "name" | "description" | "image" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
-
-export type categoriesJsonGroupEnum = "name" | "description" | "image" | "id" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner";
-
-export interface categoriesJsonGroupConnectionConnection {
-  pageInfo: PageInfo;
-  edges: Array<categoriesJsonGroupConnectionEdge> | null;
-  field: string | null;
-  fieldValue: string | null;
-  totalCount: number | null;
-}
-
-export interface categoriesJsonGroupConnectionEdge {
-  node: CategoriesJson | null;
-  next: CategoriesJson | null;
-  previous: CategoriesJson | null;
 }
 
 export interface sitePageLayoutQueryString {
@@ -3807,7 +3509,7 @@ export interface Site extends Node {
   pathPrefix: string | null;
   polyfill: boolean | null;
   buildTime: string | null;
-  internal: internal_20 | null;
+  internal: internal_16 | null;
 }
 
 export interface PortSiteArgs {
@@ -3833,7 +3535,7 @@ export interface mapping_2 {
   MarkdownRemark_frontmatter_author: string | null;
 }
 
-export interface internal_20 {
+export interface internal_16 {
   contentDigest: string | null;
   type: string | null;
   owner: string | null;
@@ -4707,22 +4409,62 @@ export interface markdownRemarkInternalFieldOwnersSlugQueryString_2 {
 
 export interface markdownRemarkFrontmatterInputObject_2 {
   title: markdownRemarkFrontmatterTitleQueryString_2 | null;
+  category: markdownRemarkFrontmatterCategoryQueryString_2 | null;
+  name: markdownRemarkFrontmatterNameQueryString_2 | null;
+  price: markdownRemarkFrontmatterPriceQueryInteger_2 | null;
+  time: markdownRemarkFrontmatterTimeQueryInteger_2 | null;
+  _PARENT: markdownRemarkFrontmatterParentQueryString_3 | null;
+  parent: markdownRemarkFrontmatterParentQueryString_4 | null;
   createdDate: markdownRemarkFrontmatterCreatedDateQueryString_2 | null;
   updatedDate: markdownRemarkFrontmatterUpdatedDateQueryString_2 | null;
   author: markdownRemarkFrontmatterAuthorQueryString_2 | null;
   tags: markdownRemarkFrontmatterTagsQueryList_2 | null;
   image: markdownRemarkFrontmatterImageQueryString_2 | null;
   draft: markdownRemarkFrontmatterDraftQueryBoolean_2 | null;
-  _PARENT: markdownRemarkFrontmatterParentQueryString_3 | null;
-  parent: markdownRemarkFrontmatterParentQueryString_4 | null;
-  category: markdownRemarkFrontmatterCategoryQueryString_2 | null;
-  price: markdownRemarkFrontmatterPriceQueryInteger_2 | null;
-  time: markdownRemarkFrontmatterTimeQueryInteger_2 | null;
-  name: markdownRemarkFrontmatterNameQueryString_2 | null;
   description: markdownRemarkFrontmatterDescriptionQueryString_2 | null;
+  position: markdownRemarkFrontmatterPositionQueryString_2 | null;
+  order: markdownRemarkFrontmatterOrderQueryInteger_2 | null;
 }
 
 export interface markdownRemarkFrontmatterTitleQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkFrontmatterCategoryQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkFrontmatterNameQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkFrontmatterPriceQueryInteger_2 {
+  eq: number | null;
+  ne: number | null;
+}
+
+export interface markdownRemarkFrontmatterTimeQueryInteger_2 {
+  eq: number | null;
+  ne: number | null;
+}
+
+export interface markdownRemarkFrontmatterParentQueryString_3 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkFrontmatterParentQueryString_4 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
@@ -4770,49 +4512,23 @@ export interface markdownRemarkFrontmatterDraftQueryBoolean_2 {
   ne: boolean | null;
 }
 
-export interface markdownRemarkFrontmatterParentQueryString_3 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface markdownRemarkFrontmatterParentQueryString_4 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface markdownRemarkFrontmatterCategoryQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface markdownRemarkFrontmatterPriceQueryInteger_2 {
-  eq: number | null;
-  ne: number | null;
-}
-
-export interface markdownRemarkFrontmatterTimeQueryInteger_2 {
-  eq: number | null;
-  ne: number | null;
-}
-
-export interface markdownRemarkFrontmatterNameQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
 export interface markdownRemarkFrontmatterDescriptionQueryString_2 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
+}
+
+export interface markdownRemarkFrontmatterPositionQueryString_2 {
+  eq: string | null;
+  ne: string | null;
+  regex: string | null;
+  glob: string | null;
+}
+
+export interface markdownRemarkFrontmatterOrderQueryInteger_2 {
+  eq: number | null;
+  ne: number | null;
 }
 
 export interface markdownRemarkFileAbsolutePathQueryString_2 {
@@ -4903,73 +4619,6 @@ export interface wordCountWordsQueryInt_3 {
   ne: number | null;
 }
 
-export interface servicesJsonCategoryQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonNameQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonDescriptionQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonPriceQueryInteger_2 {
-  eq: number | null;
-  ne: number | null;
-}
-
-export interface servicesJsonSessionTimeQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonIdQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonInternalInputObject_2 {
-  contentDigest: servicesJsonInternalContentDigestQueryString_2 | null;
-  type: servicesJsonInternalTypeQueryString_2 | null;
-  owner: servicesJsonInternalOwnerQueryString_2 | null;
-}
-
-export interface servicesJsonInternalContentDigestQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonInternalTypeQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface servicesJsonInternalOwnerQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
 export interface authorJsonIdQueryString_2 {
   eq: string | null;
   ne: string | null;
@@ -5012,61 +4661,6 @@ export interface authorJsonInternalTypeQueryString_2 {
 }
 
 export interface authorJsonInternalOwnerQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonNameQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonDescriptionQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonImageQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonIdQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonInternalInputObject_2 {
-  contentDigest: categoriesJsonInternalContentDigestQueryString_2 | null;
-  type: categoriesJsonInternalTypeQueryString_2 | null;
-  owner: categoriesJsonInternalOwnerQueryString_2 | null;
-}
-
-export interface categoriesJsonInternalContentDigestQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonInternalTypeQueryString_2 {
-  eq: string | null;
-  ne: string | null;
-  regex: string | null;
-  glob: string | null;
-}
-
-export interface categoriesJsonInternalOwnerQueryString_2 {
   eq: string | null;
   ne: string | null;
   regex: string | null;

@@ -40,11 +40,11 @@ module.exports = class HTML extends React.Component<HtmlProps> {
           />
           <meta name="HandheldFriendly" content="true"/>
           <meta name="MobileOptimized" content="320"/>
-          {/* <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffbf00" />
-          <meta name="theme-color" content="#ffffff" /> */}
+          <meta name="theme-color" content="#ffffff" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
           {css}
         </head>

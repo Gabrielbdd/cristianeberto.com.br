@@ -4,7 +4,7 @@ export default Serviços
 
 export const pageQuery = graphql`
   query ServicosPage {
-    services: allMarkdownRemark(filter: { fields: { slug: { regex: "/services\/(?!categories)/" } }}) {
+    services: allMarkdownRemark(filter: { fields: { slug: { regex: "/^\/services\/(?!categories)/" } }}) {
       edges {
         node {
           frontmatter {
@@ -18,7 +18,7 @@ export const pageQuery = graphql`
       }
     }
     
-    categories:allMarkdownRemark(filter: { fields: { slug: { regex: "/services/categories/" } }}) {
+    categories: allMarkdownRemark(filter: { fields: { slug: { regex: "/services/categories/" } }}) {
       edges {
         node {
           frontmatter {

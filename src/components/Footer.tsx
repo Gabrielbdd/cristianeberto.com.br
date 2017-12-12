@@ -17,7 +17,6 @@ import cristianeBertoLogo = require('../assets/cristiane-berto.png')
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
-    width: '100%',
     maxWidth: '350px',
     margin: '40px auto 10px auto',
 
@@ -36,7 +35,7 @@ const styles = (theme: Theme): StyleRules => ({
     },
 
     '& .contact': {
-      '& > a': {
+      '& .content > a': {
         lineHeight: 2
       }
     },

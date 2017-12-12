@@ -20,6 +20,7 @@ import {
 } from '../../graphql-types'
 
 import Service from './components/Service'
+import Title from '../../components/Title'
 import Container from '../../components/Container'
 import returnType from '../../utils/returnType'
 
@@ -49,21 +50,6 @@ const styles = (theme: Theme): StyleRules => ({
 
     '& > *:last-child': {
       marginBottom: '0 !important'
-    }
-  },
-
-  categories__title: {
-    paddingLeft: '20px',
-    marginBottom: '30px',
-    textTransform: 'uppercase',
-
-    '&::before': {
-      content: "''",
-      position: 'absolute',
-      left: '0',
-      width: '5px',
-      height: '21px',
-      backgroundColor: theme.palette.primary[500]
     }
   },
 
@@ -123,7 +109,7 @@ class Serviços extends React.Component<IProps & WithStyles> {
     const categoriesEdges   = data.categories.edges as MarkdownRemarkEdge[]
     const servicesGroup     = groupBy(servicesEdges, 'node.frontmatter.category')
     const categoriesMap     = categoriesEdges.reduce((map, { node }) => {
-      map.set(node.frontmatter.name, node)
+      map.set(node!.frontmatter!.name!, node!)
 
       return map
     }, new Map())
@@ -141,9 +127,9 @@ class Serviços extends React.Component<IProps & WithStyles> {
 
           return (
             <div className={classes.categories} key={categoryKey}>
-              <Typography className={classes.categories__title} type="title">
+              <Title>
                 {categoryKey}
-              </Typography>
+              </Title>
               <div className={classes.categories__detail}>
                 <Img
                   sizes={image.sizes}
@@ -157,7 +143,7 @@ class Serviços extends React.Component<IProps & WithStyles> {
               </div>
 
               {servicesGroup[categoryKey].map(({ node }) => (
-                <Service service={node} key={node.frontmatter.name} />
+                <Service service={node!} key={node!.frontmatter!.name!} />
               ))}
             </div>
           )

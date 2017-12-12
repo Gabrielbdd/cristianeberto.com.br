@@ -21,7 +21,7 @@ interface IProps {
 }
 
 const Blog = (props: IProps) => {
-  let totalPages   = Math.ceil(props.data.posts.totalCount / 10),
+  let totalPages   = Math.ceil(props.data.posts.totalCount! / 10),
       actualPage   = getActualPage(props.location.pathname),
       firstPage    = 1,
       lastPage     = totalPages,

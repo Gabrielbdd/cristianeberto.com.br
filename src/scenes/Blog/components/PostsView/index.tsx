@@ -36,8 +36,8 @@ const PostsView = ({ posts, classes }: IPostsViewProps) => (
     justify="center"
   >
     {posts.map(({ node }) => {
-      const { frontmatter, timeToRead, fields: { slug }, excerpt } = node
-      const cover = frontmatter.image.children[0] as ImageSharp
+      const { frontmatter, timeToRead, fields: { slug }, excerpt } = node!
+      const cover = frontmatter!.image!.children![0] as ImageSharp
   
       if (cover.sizes) {
         return (
@@ -48,10 +48,10 @@ const PostsView = ({ posts, classes }: IPostsViewProps) => (
             key={slug}
           >
             <Post
-              title={frontmatter.title}
-              slug={slug}
+              title={frontmatter!.title!}
+              slug={slug!}
               sizes={cover.sizes}
-              content={excerpt}
+              content={excerpt!}
             />
           </Grid>
         )

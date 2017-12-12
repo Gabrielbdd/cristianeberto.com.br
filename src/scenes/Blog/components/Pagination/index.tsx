@@ -55,18 +55,18 @@ const stylesType = returnType(styles)
 interface IProps extends StyledComponentProps<keyof typeof stylesType> {
   firstPage: string
   lastPage: string
-  nextPage: string
-  previousPage: string
+  nextPage: string | null
+  previousPage: string | null
   actualPage: string
 }
 
 class Pagination extends React.Component<IProps & WithStyles> {
   navigateToPreviousPage = () => {
-    navigateTo(this.props.previousPage)
+    navigateTo(this.props.previousPage!)
   }
 
   navigateToNextPage = () => {
-    navigateTo(this.props.nextPage)
+    navigateTo(this.props.nextPage!)
   }
 
   navigateToFirstPage = () => {
@@ -84,24 +84,24 @@ class Pagination extends React.Component<IProps & WithStyles> {
 
     if (lastPage != firstPage) {
       if (isCloseToStart) {
-        if (firstPage === actualPage && getPageID(lastPage) - 1 > getPageID(nextPage)) {
-          navigationPaths.push(`/blog/page/${getPageID(nextPage) + 1}`)
+        if (firstPage === actualPage && getPageID(lastPage) - 1 > getPageID(nextPage!)) {
+          navigationPaths.push(`/blog/page/${getPageID(nextPage!) + 1}`)
         }
   
-        if (getPageID(nextPage) < getPageID(lastPage)) {
-          if (getPageID(nextPage) + 1 < getPageID(lastPage)) {
+        if (getPageID(nextPage!) < getPageID(lastPage)) {
+          if (getPageID(nextPage!) + 1 < getPageID(lastPage)) {
             navigationPaths.push(MORE)
           }
 
           navigationPaths.push(lastPage)
         }
       } else {
-        if (lastPage === actualPage && getPageID(firstPage) + 1 < getPageID(previousPage)) {
-          navigationPaths.unshift(`/blog/page/${getPageID(previousPage) - 1}`)
+        if (lastPage === actualPage && getPageID(firstPage) + 1 < getPageID(previousPage!)) {
+          navigationPaths.unshift(`/blog/page/${getPageID(previousPage!) - 1}`)
         }
   
-        if (getPageID(previousPage) > getPageID(firstPage)) {
-          if (getPageID(previousPage) - 1 > getPageID(firstPage)) {
+        if (getPageID(previousPage!) > getPageID(firstPage)) {
+          if (getPageID(previousPage!) - 1 > getPageID(firstPage)) {
             navigationPaths.unshift(MORE)
           }
           navigationPaths.unshift(firstPage)
@@ -124,10 +124,10 @@ class Pagination extends React.Component<IProps & WithStyles> {
 
           return (
             <PaginationButton
-              key={navigationPath}
+              key={navigationPath!}
               active={navigationPath === actualPage}
-              path={navigationPath}
-              onClick={() => navigateTo(navigationPath)}
+              path={navigationPath!}
+              onClick={() => navigateTo(navigationPath!)}
             />
           )
         })}
