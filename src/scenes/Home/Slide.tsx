@@ -5,7 +5,6 @@ import {
 
   withStyles
 } from 'material-ui/styles'
-import Img from 'gatsby-image'
 
 import SlideText from './SlideText'
 
@@ -24,8 +23,19 @@ const styles = (theme: Theme): StyleRules => ({
   root: {
     position: 'relative',
 
-    '& img': {
-      '-webkit-user-drag': 'none'
+    '& .image': {
+      width: "100%",
+      height: 300,
+      backgroundSize: "cover !important",
+      backgroundPosition: "center !important",
+    }
+  },
+
+  [theme.breakpoints.up('md')]: {
+    root: {
+      '& .image': {
+        height: 400
+      }
     }
   }
 })
@@ -40,8 +50,11 @@ const Slide: React.StatelessComponent<IProps & StyledComponent> = ({ classes, sl
   <div
     className={classes.root}
   >
-    <Img
-      sizes={slide.image.sizes}
+    <div
+      className="image"
+      style={{
+        background: `url(${slide.image.resize!.src})`
+      }}
     />
     <SlideText
       content={{

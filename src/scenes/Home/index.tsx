@@ -20,14 +20,12 @@ import returnType from '../../utils/returnType'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
-    maxWidth: '350px',
+    maxWidth: '320px',
     width: '100%',
     margin: '30px auto 0 auto',
 
     '& .slider': {
       width: '100%',
-      color: '#333',
-      background: '#419be0',
 
       '& .slick-dots li.slick-active button:before': {
         color: theme.palette.primary[500]
@@ -83,12 +81,13 @@ class Home extends React.Component<IProps & WithStyles> {
             type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
           />
         </Helmet>
-        <div className="slider">
+
+        <Grid item className="slider">
           <Slider
             arrows={false}
-            dots
             infinite
-            // autoplay
+            autoplay
+            autoplaySpeed={5000}
           >
             {slides.map(slide => (
               <div key={slide.title}>
@@ -96,7 +95,11 @@ class Home extends React.Component<IProps & WithStyles> {
               </div>
             ))}
           </Slider>
-        </div>
+        </Grid>
+
+        <Grid item>
+          <Title>Sobre nós</Title>
+        </Grid>
       </Grid>
     )
   }

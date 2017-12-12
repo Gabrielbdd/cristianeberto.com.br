@@ -45,11 +45,12 @@ const styles = (theme: Theme): StyleRules => ({
     position: "absolute",
     top: 0,
     width: "100%",
-    maxWidth: 240,
+    maxWidth: 300,
     height: "100%",
     display: "flex",
     flexDirection: "column",
     padding: 20,
+    fontSize: 20,
 
     '& h2': {
       marginBottom: 10,
