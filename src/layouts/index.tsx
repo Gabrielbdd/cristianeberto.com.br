@@ -19,6 +19,10 @@ import returnType from '../utils/returnType'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
+    '& .header': {
+      padding: 8
+    },
+
     '& a': {
       textDecoration: 'none',
       color: 'inherit',
@@ -26,6 +30,15 @@ const styles = (theme: Theme): StyleRules => ({
 
       '&:hover': {
         color: theme.palette.primary[500]
+      }
+    }
+  },
+
+  [theme.breakpoints.up('md')]: {
+    root: {
+      '& .header': {
+        paddingLeft: 48,
+        paddingRight: 48
       }
     }
   }
@@ -73,14 +86,16 @@ class DefaultLayout extends React.Component<IProps> {
           <meta name="og:site_name" content="Cristiane Berto" />
           <html lang="pt-br" />
         </Helmet>
+
         <header>
-          <Container>
+          <Container className="header">
             <Tabs
               value={activeTab}
               onChange={this.handletabChange}
               indicatorColor="primary"
               textColor="primary"
               scrollable
+              scrollButtons="off"
               fullWidth
             >
               <Tab label="Home" />

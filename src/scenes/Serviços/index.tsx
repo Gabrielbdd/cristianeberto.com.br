@@ -27,9 +27,9 @@ import returnType from '../../utils/returnType'
 const styles = (theme: Theme): StyleRules => ({
   root: {
     position: 'relative',
-    maxWidth: '350px',
-    margin: '0 auto',
-    padding: '40px 0',
+    maxWidth: theme.breakpoints.values.sm,
+    margin: '20px auto 0 auto',
+    padding: 8,
     color: theme.palette.grey.A400,
 
     '& > *': {
@@ -84,7 +84,7 @@ const styles = (theme: Theme): StyleRules => ({
   [theme.breakpoints.up('md')]: {
     root: {
       padding: '40px',
-      maxWidth: '960px'
+      maxWidth: theme.breakpoints.values.md
     },
 
     categories__detail__description: {

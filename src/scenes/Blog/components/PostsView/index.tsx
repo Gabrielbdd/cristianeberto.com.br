@@ -12,8 +12,7 @@ const styles = (theme: Theme) => ({
   root: {
     width: '100%',
     flex: 1,
-    margin: '0',
-    padding: '10px'
+    margin: '0'
   },
 
   [theme.breakpoints.up('md')]: {

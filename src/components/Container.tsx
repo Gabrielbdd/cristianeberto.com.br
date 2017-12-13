@@ -1,29 +1,36 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 import {
+  Theme,
   StyleRules,
-  StyledComponentProps,
-  WithStyles,
 
   withStyles
 } from 'material-ui/styles'
 
-const styles: StyleRules = {
+import { StyledComponent } from 'utils/styledProps'
+
+const styles = (theme: Theme): StyleRules => ({
   root: {
-    margin: '0 auto',
-    maxWidth: '960px'
+    maxWidth: theme.breakpoints.values.sm,
+    margin: '0 auto'
+  },
+
+  [theme.breakpoints.up('md')]: {
+    root: {
+      maxWidth: theme.breakpoints.values.md,
+    }
   }
-}
+})
 
-interface IContainerProps extends StyledComponentProps<keyof typeof styles> {
+interface IContainerProps {
   children?: React.ReactNode
-  className: string
+  className?: string
 }
 
-const Container = (props: IContainerProps & WithStyles) => {
+const Container = (props: IContainerProps & StyledComponent) => {
   const classNames = classnames({
     [props.classes.root]: true,
-    [props.className]: true
+    [props.className || '']: !!props.className
   })
   
   return (

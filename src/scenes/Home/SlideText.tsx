@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { StyleRules, StyledComponentProps, WithStyles, Theme, withStyles } from 'material-ui/styles'
+import { StyleRules, Theme, withStyles } from 'material-ui/styles'
 
 import { StyledComponent } from 'utils/styledProps'
 
 function parsePosition ([ horizontally, vertically ]: string) {
-  interface FlexPosition {
+  interface IPosition {
     justifyContent: 'flex-start' | 'flex-end' | 'center'
     alignItems: 'flex-start' | 'flex-end'
     right: string
@@ -12,9 +12,9 @@ function parsePosition ([ horizontally, vertically ]: string) {
     textAlign: 'start' | 'end'
   }
 
-  let flexPosition = {} as FlexPosition
+  let flexPosition = {} as IPosition
 
-  switch(vertically) {
+  switch (vertically) {
     case 'T':
       flexPosition.justifyContent = 'flex-start'
       break;
@@ -25,7 +25,7 @@ function parsePosition ([ horizontally, vertically ]: string) {
       flexPosition.justifyContent = 'flex-end'
   }
 
-  switch(horizontally) {
+  switch (horizontally) {
     case 'L':
       flexPosition.alignItems = 'flex-start'
       flexPosition.textAlign = 'start'
@@ -65,7 +65,7 @@ const styles = (theme: Theme): StyleRules => ({
   [theme.breakpoints.up('md')]: {
     root: {
       maxWidth: 550,
-      fontSize: 35,
+      fontSize: 30,
     }
   }
 })

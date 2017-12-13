@@ -17,8 +17,9 @@ import cristianeBertoLogo = require('../assets/cristiane-berto.png')
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
-    maxWidth: '350px',
-    margin: '40px auto 10px auto',
+    maxWidth: theme.breakpoints.values.sm,
+    margin: '40px auto 0 auto',
+    padding: 8,
 
     '& > *': {
       textAlign: 'center',
@@ -82,7 +83,7 @@ const styles = (theme: Theme): StyleRules => ({
 
   [theme.breakpoints.up('md')]: {
     root: {
-      maxWidth: '960px',
+      maxWidth: theme.breakpoints.values.md,
       padding: '0 40px',
 
       '& > *': {
@@ -129,7 +130,7 @@ class Footer extends React.Component<IProps> {
     const { classes } = this.props
 
     return (
-      <Grid className={classes.root} container spacing={0} justify="center" component="footer">
+      <Grid className={classes.root} container justify="center" component="footer" spacing={0}>
         <Grid
           item
           xs={12}
@@ -151,6 +152,7 @@ class Footer extends React.Component<IProps> {
             </ul>
           </div>
         </Grid>
+
         <Grid
           item
           xs={12}
@@ -172,6 +174,7 @@ class Footer extends React.Component<IProps> {
             </a>
           </div>
         </Grid>
+
         <Grid
           item
           xs={12}

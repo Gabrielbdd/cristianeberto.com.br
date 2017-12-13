@@ -9,20 +9,23 @@ import {
 
 import returnType from '../utils/returnType'
 import { StyledComponentProps } from 'material-ui/styles/withStyles';
+import { StyledComponent } from 'utils/styledProps'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
     position: 'relative',
-    paddingLeft: '20px',
-    marginBottom: '30px',
+    paddingLeft: 20,
+    marginBottom: 5,
     textTransform: 'uppercase',
 
     '&::before': {
       content: "''",
       position: 'absolute',
       left: '0',
-      width: '5px',
-      height: '100%',
+      top: "50%",
+      width: 5,
+      height: 21,
+      transform: "translateY(-50%)",
       backgroundColor: theme.palette.primary[500]
     }
   }
@@ -30,9 +33,9 @@ const styles = (theme: Theme): StyleRules => ({
 
 const stylesType = returnType(styles)
 
-interface IProps extends WithStyles<keyof typeof stylesType> {}
+interface IProps {}
 
-const Title: React.StatelessComponent<IProps> = ({ classes, children }) => (
+const Title: React.StatelessComponent<IProps & StyledComponent> = ({ classes, children }) => (
   <h2 className={classes.root}>
     {children}
   </h2>

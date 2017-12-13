@@ -1,11 +1,13 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
+import { Theme, StyleRules, withStyles } from 'material-ui/styles'
 
 import { MarkdownRemarkConnection, ImageSharp } from '../../graphql-types'
 
 import Container from '../../components/Container'
 import PostsView from './components/PostsView'
 import Pagination from './components/Pagination'
+import { StyledComponent } from 'utils/styledProps'
 
 import getActualPage from './getPageID'
 
@@ -20,7 +22,13 @@ interface IProps {
   }
 }
 
-const Blog = (props: IProps) => {
+const styles = (theme: Theme): StyleRules => ({
+  root: {
+    marginTop: '20px'
+  }
+})
+
+const Blog = (props: IProps & StyledComponent) => {
   let totalPages   = Math.ceil(props.data.posts.totalCount! / 10),
       actualPage   = getActualPage(props.location.pathname),
       firstPage    = 1,
@@ -29,11 +37,13 @@ const Blog = (props: IProps) => {
       nextPage     = actualPage === lastPage ? null : actualPage + 1
 
   return (
-    <Container>
+    <Container className={props.classes.root}>
       <Helmet>
         <title>Blog</title>
       </Helmet>
+
       <PostsView posts={props.data.posts.edges} />
+
       <Pagination
         actualPage={`/blog/page/${actualPage}`}
         firstPage={`/blog/page/${firstPage}`}
@@ -45,4 +55,4 @@ const Blog = (props: IProps) => {
   )
 }
 
-export default Blog
+export default withStyles(styles)(Blog)
