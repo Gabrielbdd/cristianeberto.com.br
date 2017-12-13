@@ -26,5 +26,24 @@ export const pageQuery = graphql`
         }
       }
     }
+
+    cristianeBerto: allImageSharp(filter: { id: { regex: "/cristiane-berto.jpg/" } }) {
+      edges {
+        node {
+          sizes(maxWidth: 200, maxHeight: 200) {
+            base64
+            tracedSVG
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
+            originalImg
+            originalName
+          }
+        }
+      }
+    }
   }
 `
