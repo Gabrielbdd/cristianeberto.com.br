@@ -9,8 +9,8 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             category
-            price
             name
+            price
             time
           }
           html
@@ -28,16 +28,7 @@ export const pageQuery = graphql`
               children {
                 ... on ImageSharp {
                   sizes(maxWidth: 200) {
-                    base64
-                    tracedSVG
-                    aspectRatio
-                    src
-                    srcSet
-                    srcWebp
-                    srcSetWebp
-                    sizes
-                    originalImg
-                    originalName
+                    ...GatsbyImageSharpSizes
                   }
                 }
               }

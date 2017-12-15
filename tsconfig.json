@@ -10,7 +10,8 @@
         "lib": ["dom", "esnext"],
         "baseUrl": "src",
         "paths": {
-          "utils": ["utils/*"]
+          "utils": ["utils/*"],
+          "graphql-types": ["graphql-types.d.ts"]
         }
     },
     "include": [

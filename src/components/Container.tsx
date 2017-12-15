@@ -1,15 +1,10 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
-import {
-  Theme,
-  StyleRules,
-
-  withStyles
-} from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
 import { StyledComponent } from 'utils/styledProps'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     maxWidth: theme.breakpoints.values.sm,
     margin: '0 auto'
@@ -20,7 +15,7 @@ const styles = (theme: Theme): StyleRules => ({
       maxWidth: theme.breakpoints.values.md,
     }
   }
-})
+}))
 
 interface IContainerProps {
   children?: React.ReactNode
@@ -40,4 +35,4 @@ const Container = (props: IContainerProps & StyledComponent) => {
   )
 }
 
-export default withStyles(styles)(Container)
+export default injectStyles(Container)

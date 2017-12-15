@@ -70,8 +70,8 @@ class Service extends React.Component<IProps & WithStyles> {
   render () {
     const { expanded } = this.state
     const { classes, service } = this.props
-    const { name, price, time } = service.frontmatter
-    const __html = service.html
+    const { name, price, time } = service.frontmatter!
+    const __html = service.html!
 
     return (
       <Paper className={classes.root}>
@@ -80,7 +80,7 @@ class Service extends React.Component<IProps & WithStyles> {
             {name}
           </h3>
           <p className={classes.header__price}>
-            R$ {price.toFixed(2)}
+            R$ {price!.toFixed(2)}
           </p>
           <IconButton
             className={classnames(classes.expand, {

@@ -17,7 +17,7 @@ import {
   MarkdownRemarkEdge,
   MarkdownRemark,
   ImageSharp
-} from '../../graphql-types'
+} from 'graphql-types'
 
 import Service from './components/Service'
 import Title from '../../components/Title'
@@ -120,15 +120,15 @@ class Serviços extends React.Component<IProps & WithStyles> {
           <title>Serviços</title>
         </Helmet>
 
-        {Object.keys(servicesGroup).map(categoryKey => {
-          const category = categoriesMap.get(categoryKey)
+        {Object.keys(servicesGroup).map(categoryName => {
+          const category = categoriesMap.get(categoryName)
           const details  = category.frontmatter
           const image    = details.image.children[0] as ImageSharp
 
           return (
-            <div className={classes.categories} key={categoryKey}>
+            <div id={categoryName.toLocaleLowerCase()} className={classes.categories} key={categoryName}>
               <Title>
-                {categoryKey}
+                {categoryName}
               </Title>
               <div className={classes.categories__detail}>
                 <Img
@@ -142,7 +142,7 @@ class Serviços extends React.Component<IProps & WithStyles> {
                 </div>
               </div>
 
-              {servicesGroup[categoryKey].map(({ node }) => (
+              {servicesGroup[categoryName].map(({ node }) => (
                 <Service service={node!} key={node!.frontmatter!.name!} />
               ))}
             </div>
