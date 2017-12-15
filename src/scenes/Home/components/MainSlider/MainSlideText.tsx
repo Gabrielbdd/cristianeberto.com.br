@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyleRules, Theme, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
 import { StyledComponent } from 'utils/styledProps'
 
@@ -40,15 +40,15 @@ function parsePosition ([ horizontally, vertically ]: string) {
   return flexPosition
 }
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
-    position: "absolute",
+    position: 'absolute' as 'absolute',
     top: 0,
-    width: "100%",
+    width: '100%',
     maxWidth: 300,
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column' as 'column',
     padding: 20,
     fontSize: 20,
 
@@ -68,19 +68,19 @@ const styles = (theme: Theme): StyleRules => ({
       fontSize: 30,
     }
   }
-})
+}))
 
-export interface ISlideTextContent {
+export interface IMainSlideTextContent {
   title: string
   html: string
   position: string
 }
 
 type IProps = {
-  content: ISlideTextContent
+  content: IMainSlideTextContent
 }
 
-const SlideText: React.StatelessComponent<IProps & StyledComponent> = ({ classes, content }) => {
+const MainSlideText: React.StatelessComponent<IProps & StyledComponent> = ({ classes, content }) => {
   const { title, html, position } = content
 
   return (
@@ -92,4 +92,4 @@ const SlideText: React.StatelessComponent<IProps & StyledComponent> = ({ classes
   )
 }
 
-export default withStyles(styles)(SlideText)
+export default injectStyles(MainSlideText)
