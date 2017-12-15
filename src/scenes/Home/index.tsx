@@ -1,25 +1,18 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import Slider from 'react-slick'
-import { Grid, Button, Divider, Paper } from 'material-ui'
-import {
-  StyleRules,
-  WithStyles,
-  StyledComponentProps,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
+import { Grid, Button, Divider, Paper, withStyles } from 'material-ui'
 import Img from 'gatsby-image'
 import { navigateTo } from 'gatsby-link'
 
-import { MarkdownRemarkConnection, ImageSharp, ImageSharpConnection } from '../../graphql-types'
+import { MarkdownRemarkConnection, ImageSharp, ImageSharpConnection, MarkdownRemark } from 'graphql-types'
 
 import Title from '../../components/Title'
-import Slide, { ISlide } from './Slide'
-import returnType from '../../utils/returnType'
+import MainSlider from './components/MainSlider'
+import ServicesSlider from './components/ServicesSlider'
+import { StyledComponent } from 'utils/styledProps'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     maxWidth: theme.breakpoints.values.sm,
     width: '100%',
@@ -41,6 +34,16 @@ const styles = (theme: Theme): StyleRules => ({
         maxWidth: 150,
         margin: "0 auto",
         borderRadius: 180,
+      },
+
+      '& .ler-mais': {
+        border: `2px solid ${theme.palette.primary[500]}`,
+        borderRadius: 3,
+        transition: `all 250ms ${theme.transitions.easing.easeIn}`,
+
+        '&:hover': {
+          borderColor: 'white'
+        }
       }
     }
   },
@@ -51,18 +54,18 @@ const styles = (theme: Theme): StyleRules => ({
       padding: '0 40px'
     }
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IProps extends StyledComponentProps<keyof typeof stylesType> {
+interface IHomeProps {
   data: {
     slides: MarkdownRemarkConnection,
+    servicesCategories: MarkdownRemarkConnection
     cristianeBerto: ImageSharpConnection
   }
 }
 
-class Home extends React.Component<IProps & WithStyles> {
+@injectStyles
+class Home extends React.Component<IHomeProps & StyledComponent> {
   render () {
     const { classes, data } = this.props
 
@@ -80,6 +83,16 @@ class Home extends React.Component<IProps & WithStyles> {
 
       return arr
     }, [] as ISlide[])
+
+    const servicesCategories = data.servicesCategories.edges!.reduce((acc, { node }) => {
+      const { frontmatter } = node!
+      const image = frontmatter!.image!.children![0] as ImageSharp
+
+      acc.push(Object.assign({}, frontmatter, { image }))
+
+      return acc
+    }, [])
+
     const cristianeBertoImageSizes = data.cristianeBerto.edges![0].node!.sizes
 
     return (
@@ -99,18 +112,7 @@ class Home extends React.Component<IProps & WithStyles> {
 
         <Grid item xs={12}>
           <Paper className="slider">
-            <Slider
-              arrows={false}
-              infinite
-              autoplay
-              autoplaySpeed={5000}
-            >
-              {slides.map(slide => (
-                <div key={slide.title}>
-                  <Slide slide={slide} />
-                </div>
-              ))}
-            </Slider>
+            <MainSlider slides={slides} />
           </Paper>
         </Grid>
 
@@ -145,10 +147,32 @@ class Home extends React.Component<IProps & WithStyles> {
               </Grid>
 
               <Grid item style={{ marginLeft: "auto" }}>
-                <Button color="primary" onClick={() => navigateTo('/sobre')}>
+                <Button
+                  className="ler-mais"
+                  color="primary"
+                  onClick={() => navigateTo('/sobre')}
+                >
                   Ler mais
                 </Button>
               </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+        
+        <Grid item xs={12}>
+          <Paper className="about-us">
+            <Grid container>
+              <Grid item xs={12}>
+                <Title>
+                  {'Serviços & Tratamentos'}
+                </Title>
+                <em>Oferecemos uma ampla gama de serviços de beleza adaptados às necessidades de cada um</em>
+              </Grid>
+
+              <Grid item xs={12}>
+                <ServicesSlider slides={servicesCategories} />
+              </Grid>
+
             </Grid>
           </Paper>
         </Grid>
@@ -157,4 +181,4 @@ class Home extends React.Component<IProps & WithStyles> {
   }
 }
 
-export default withStyles(styles)(Home)
+export default Home
