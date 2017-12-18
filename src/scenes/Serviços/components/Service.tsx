@@ -1,42 +1,37 @@
 import * as React from 'react'
-import { Paper, IconButton, Typography } from 'material-ui'
+import { Paper, IconButton, Typography, withStyles } from 'material-ui'
 import Collapse from 'material-ui/transitions/Collapse'
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore'
-import {
-  StyleRules,
-  WithStyles,
-  StyledComponentProps,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
 import * as classnames from 'classnames'
 
-import { MarkdownRemark } from '../../../graphql-types'
+import { StyledComponent } from 'utils/styledProps'
+import { MarkdownRemark } from 'graphql-types'
 
-import returnType from '../../../utils/returnType'
-
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
-    position: 'relative',
-    padding: '0px 15px'
+    position: 'relative' as 'relative',
+    padding: '0px 15px',
+
+    '& .content': {
+      paddingBottom: 16,
+    }
   },
 
   header: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center' as 'center'
   },
 
   header__title: {
     flex: '1',
     fontSize: '1.2rem',
-    fontWeight: 500,
+    fontWeight: 500 as 500,
     color: theme.palette.grey.A400,
   },
 
   header__price: {
     color: theme.palette.primary[500],
-    fontWeight: 500
+    fontWeight: 500 as 500
   },
 
   expand: {
@@ -49,16 +44,14 @@ const styles = (theme: Theme): StyleRules => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   }
+}))
 
-})
-
-const stylesType = returnType(styles)
-
-interface IProps extends StyledComponentProps<keyof typeof stylesType> {
+interface IProps {
   service: MarkdownRemark
 }
 
-class Service extends React.Component<IProps & WithStyles> {
+@injectStyles
+class Service extends React.Component<IProps & StyledComponent> {
   state = {
     expanded: false
   }
@@ -91,15 +84,18 @@ class Service extends React.Component<IProps & WithStyles> {
             <ExpandMoreIcon />
           </IconButton>
         </div>
+
         <Collapse in={expanded} unmountOnExit>
-          <section dangerouslySetInnerHTML={{ __html }} />
-          <p>
-           Duração: {time} mins
-          </p>
+          <section
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: `${__html}</br><p>Duração: ${time} mins</p>`
+            }}
+          />
         </Collapse>
       </Paper>
     )
   }
 }
 
-export default withStyles(styles)(Service)
+export default Service

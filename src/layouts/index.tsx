@@ -19,6 +19,8 @@ import returnType from '../utils/returnType'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
+    color: theme.palette.grey[800],
+
     '& .header': {
       padding: 8
     },

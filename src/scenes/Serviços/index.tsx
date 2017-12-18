@@ -1,17 +1,10 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { Grid, Typography } from 'material-ui'
-import {
-  StyleRules,
-  WithStyles,
-  StyledComponentProps,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
+import { Grid, withStyles } from 'material-ui'
 import Img from 'gatsby-image'
 import { groupBy } from 'lodash'
 
+import { StyledComponent } from 'utils/styledProps'
 import {
   MarkdownRemarkConnection,
   MarkdownRemarkEdge,
@@ -22,11 +15,10 @@ import {
 import Service from './components/Service'
 import Title from '../../components/Title'
 import Container from '../../components/Container'
-import returnType from '../../utils/returnType'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
-    position: 'relative',
+    position: 'relative' as 'relative',
     maxWidth: theme.breakpoints.values.sm,
     margin: '20px auto 0 auto',
     padding: 8,
@@ -42,10 +34,10 @@ const styles = (theme: Theme): StyleRules => ({
   },
 
   categories: {
-    position: 'relative',
+    position: 'relative' as 'relative',
 
     '& > *': {
-      marginBottom: '20px !important'
+      marginBottom: '15px !important'
     },
 
     '& > *:last-child': {
@@ -91,18 +83,17 @@ const styles = (theme: Theme): StyleRules => ({
       marginTop: '0'
     },
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IProps extends StyledComponentProps<keyof typeof stylesType> {
+interface IProps {
   data: {
     services: MarkdownRemarkConnection
     categories: MarkdownRemarkConnection
   }
 }
 
-class Serviços extends React.Component<IProps & WithStyles> {
+@injectStyles
+class Serviços extends React.Component<IProps & StyledComponent> {
   render () {
     const { classes, data } = this.props
     const servicesEdges     = data.services.edges as MarkdownRemarkEdge[]
@@ -136,9 +127,9 @@ class Serviços extends React.Component<IProps & WithStyles> {
                   className={classes.categories__detail__image}
                 />
                 <div className={classes.categories__detail__description}>
-                  <Typography paragraph>
+                  <p>
                     {details.description}
-                  </Typography>
+                  </p>
                 </div>
               </div>
 
@@ -153,4 +144,4 @@ class Serviços extends React.Component<IProps & WithStyles> {
   }
 }
 
-export default withStyles(styles)(Serviços)
+export default Serviços
