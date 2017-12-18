@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-const Contato = () => (
-  <div>Contato</div>
-)
+import Contact from '../scenes/Contact'
 
-export default Contato
+export default Contact
