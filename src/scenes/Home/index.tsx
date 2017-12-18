@@ -1,7 +1,6 @@
 import * as React from 'react'
-import Helmet from 'react-helmet'
 import Slider from 'react-slick'
-import { Grid, Button, Divider, Paper, withStyles } from 'material-ui'
+import { Grid, Button, ButtonBase, Divider, Paper, withStyles } from 'material-ui'
 import Img from 'gatsby-image'
 import { navigateTo } from 'gatsby-link'
 
@@ -42,10 +41,19 @@ const injectStyles = withStyles(theme => ({
         transition: `all 250ms ${theme.transitions.easing.easeIn}`,
 
         '&:hover': {
-          borderColor: 'white'
+          backgroundColor: theme.palette.primary[500],
+          color: 'white'
         }
       }
-    }
+    },
+
+    '& .services': {
+      padding: 20
+    },
+
+    // '& .testimonials': {
+    //   padding: 20
+    // }
   },
 
   [theme.breakpoints.up('md')]: {
@@ -97,19 +105,6 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
 
     return (
       <Grid container className={classes.root}>
-        <Helmet>
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-          />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-          />
-        </Helmet>
-
         <Grid item xs={12}>
           <Paper className="slider">
             <MainSlider slides={slides} />
@@ -160,7 +155,7 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
         </Grid>
         
         <Grid item xs={12}>
-          <Paper className="about-us">
+          <Paper className="services">
             <Grid container>
               <Grid item xs={12}>
                 <Title>
@@ -176,6 +171,23 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
             </Grid>
           </Paper>
         </Grid>
+
+
+        {/**
+         * @todo implementar testemunhos pegos de avaliações feitas na página do Facebook
+         */}
+        {/* <Grid item xs={12}>
+          <Paper className="testimonials">
+            <Grid container>
+              <Grid item xs={12}>
+                <Title>
+                  Testemunhos
+                </Title>
+                <em>Veja porque nossos clientes nos amam tanto</em>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid> */}
       </Grid>
     )
   }
