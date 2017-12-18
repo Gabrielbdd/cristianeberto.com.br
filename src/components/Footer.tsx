@@ -167,7 +167,7 @@ class Footer extends React.Component<IProps> {
             <br/>
             <br/>
             <br/>
-            <a href="https://goo.gl/maps/7d91oc9DsXk" target="_blanck">
+            <a href="https://goo.gl/maps/7d91oc9DsXk" target="_blank">
               <span>Centro - BH</span>
               <br/>
               <span>Av. Amazonas, 687 | sala 405</span>
@@ -184,7 +184,7 @@ class Footer extends React.Component<IProps> {
           <div className="content">
             <p className="title">Continue conosco</p>
             <ul className="social__list">
-              <li><a href="https://facebook.com/cristianeberto" target="_blank"><SocialIcon type="Facebook" fill="#333" /></a></li>
+              <li><a href="https://facebook.com/cristianebertooficial" target="_blank"><SocialIcon type="Facebook" fill="#333" /></a></li>
               <li><a href="https://instagram.com/cristianebertooficial" target="_blank"><SocialIcon type="Instagram" fill="#333" /></a></li>
             </ul>
           </div>

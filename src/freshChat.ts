@@ -27,3 +27,7 @@ export function init () {
 
   document.body.appendChild(freshChatBootstrap)
 }
+
+export function open () {
+  window.fcWidget.open()
+}

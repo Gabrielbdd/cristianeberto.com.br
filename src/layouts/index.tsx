@@ -33,6 +33,12 @@ const styles = (theme: Theme): StyleRules => ({
       '&:hover': {
         color: theme.palette.primary[500]
       }
+    },
+
+    '& .outstanding': {
+      color: theme.palette.primary[200],
+      textDecoration: "underline",
+      cursor: 'pointer',
     }
   },
 

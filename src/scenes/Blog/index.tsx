@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { Theme, StyleRules, withStyles } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
-import { MarkdownRemarkConnection, ImageSharp } from '../../graphql-types'
+import { MarkdownRemarkConnection, ImageSharp } from 'graphql-types'
 
 import Container from '../../components/Container'
 import PostsView from './components/PostsView'
@@ -22,11 +22,11 @@ interface IProps {
   }
 }
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     marginTop: '20px'
   }
-})
+}))
 
 const Blog = (props: IProps & StyledComponent) => {
   let totalPages   = Math.ceil(props.data.posts.totalCount! / 10),
@@ -55,4 +55,4 @@ const Blog = (props: IProps & StyledComponent) => {
   )
 }
 
-export default withStyles(styles)(Blog)
+export default injectStyles(Blog)
