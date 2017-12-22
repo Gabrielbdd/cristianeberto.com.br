@@ -1,22 +1,18 @@
 import * as React from 'react'
-import {
-  StyleRules,
-  WithStyles,
-  Theme,
+import * as classnames from 'classnames'
+import { withStyles } from 'material-ui/styles'
 
-  withStyles
-} from 'material-ui/styles'
-
-import returnType from '../utils/returnType'
-import { StyledComponentProps } from 'material-ui/styles/withStyles';
 import { StyledComponent } from 'utils/styledProps'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
-    position: 'relative',
-    paddingLeft: 20,
     marginBottom: 5,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
+  },
+
+  sLeftLine: {
+    position: 'relative' as 'relative',
+    paddingLeft: 20,
 
     '&::before': {
       content: "''",
@@ -28,17 +24,26 @@ const styles = (theme: Theme): StyleRules => ({
       transform: "translateY(-50%)",
       backgroundColor: theme.palette.primary[500]
     }
-  }
+  },
+}))
+
+interface IProps {
+  leftLine?: boolean
+}
+
+const Title = injectStyles<IProps>(props => {
+  const { classes, children, leftLine } = props
+  const { root, sLeftLine } = classes
+
+  const className = classnames(root, {
+    [sLeftLine]: leftLine
+  })
+
+  return (
+    <h2 className={className}>
+      {children}
+    </h2>
+  )
 })
 
-const stylesType = returnType(styles)
-
-interface IProps {}
-
-const Title: React.StatelessComponent<IProps & StyledComponent> = ({ classes, children }) => (
-  <h2 className={classes.root}>
-    {children}
-  </h2>
-)
-
-export default withStyles(styles)(Title)
+export default Title

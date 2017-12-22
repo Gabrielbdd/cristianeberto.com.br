@@ -115,7 +115,7 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
           <Paper className="about-us">
             <Grid container>
               <Grid item xs={12}>
-                <Title>
+                <Title leftLine>
                   Sobre nós
                 </Title>
                 <em>Por que nós somos diferentes? Venha e descubra</em>
@@ -158,7 +158,7 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
           <Paper className="services">
             <Grid container>
               <Grid item xs={12}>
-                <Title>
+                <Title leftLine>
                   {'Serviços & Tratamentos'}
                 </Title>
                 <em>Oferecemos uma ampla gama de serviços de beleza adaptados às necessidades de cada um</em>
