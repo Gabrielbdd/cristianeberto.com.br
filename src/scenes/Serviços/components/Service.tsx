@@ -10,7 +10,7 @@ import { MarkdownRemark } from 'graphql-types'
 const injectStyles = withStyles(theme => ({
   root: {
     position: 'relative' as 'relative',
-    padding: '0px 15px',
+    padding: '7px 14px',
 
     '& .content': {
       paddingBottom: 16,
@@ -75,24 +75,24 @@ class Service extends React.Component<IProps & StyledComponent> {
           <p className={classes.header__price}>
             R$ {price!.toFixed(2)}
           </p>
-          <IconButton
+          {/* <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: expanded
             })}
             onClick={this.handleExpand}
           >
             <ExpandMoreIcon />
-          </IconButton>
+          </IconButton> */}
         </div>
 
-        <Collapse in={expanded} unmountOnExit>
+        {/* <Collapse in={expanded} unmountOnExit>
           <section
             className="content"
             dangerouslySetInnerHTML={{
               __html: `${__html}</br><p>Duração: ${time} mins</p>`
             }}
           />
-        </Collapse>
+        </Collapse> */}
       </Paper>
     )
   }

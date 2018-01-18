@@ -13,7 +13,6 @@ import { StyledComponent } from 'utils/styledProps'
 
 const injectStyles = withStyles(theme => ({
   root: {
-    maxWidth: theme.breakpoints.values.sm,
     width: '100%',
     margin: '20px auto 0 auto',
 
@@ -21,7 +20,7 @@ const injectStyles = withStyles(theme => ({
       width: '100%',
 
       '& .slick-dots li.slick-active button:before': {
-        color: theme.palette.primary[500]
+        color: theme.palette.primary.main
       }
     },
 
@@ -36,12 +35,12 @@ const injectStyles = withStyles(theme => ({
       },
 
       '& .ler-mais': {
-        border: `2px solid ${theme.palette.primary[500]}`,
+        border: `2px solid ${theme.palette.primary.main}`,
         borderRadius: 3,
         transition: `all 250ms ${theme.transitions.easing.easeIn}`,
 
         '&:hover': {
-          backgroundColor: theme.palette.primary[500],
+          backgroundColor: theme.palette.primary.main,
           color: 'white'
         }
       }
@@ -79,14 +78,15 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
 
     const slides = data.slides.edges!.reduce((arr, { node }) => {
       const { frontmatter, html } = node!
-      const { image, title, position } = frontmatter!
+      const { image, title, position, order } = frontmatter!
       const slideImage = image!.children![0] as ImageSharp
 
       arr.push({
         image: slideImage,
         title: title!,
         html: html!,
-        position: position!
+        position: position!,
+        order: order!
       })
 
       return arr
@@ -116,7 +116,7 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
             <Grid container>
               <Grid item xs={12}>
                 <Title leftLine>
-                  Sobre nós
+                  Sobre
                 </Title>
                 <em>Por que nós somos diferentes? Venha e descubra</em>
               </Grid>
@@ -129,15 +129,15 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
               </Grid>
 
               <Grid item xs={12} md={5}>
-                Duis nulla Lorem occaecat qui Lorem eu esse est. Duis id sit excepteur tempor dolore reprehenderit nostrud nisi aliqua amet pariatur elit est. Laborum ad irure elit do cupidatat incididunt cupidatat. Qui in enim elit aute. Quis id ipsum tempor duis nisi ea nostrud nostrud. Occaecat ipsum adipisicing est ea quis elit Lorem ea ullamco qui laboris nostrud. Laborum cupidatat occaecat excepteur in aute mollit commodo laboris id labore fugiat do labore velit.
+              Cristiane Berto queria criar uma clínica de estética com um diferencial: um lugar onde suas clientes poderiam ir para obter mais do que apenas tratamentos estéticos.
               </Grid>
 
               <Grid item xs={12} md={5}>
-                Ea nulla voluptate voluptate ex reprehenderit ex. Adipisicing ea irure nostrud consequat adipisicing magna irure labore in id labore tempor minim. Est nulla cupidatat et consequat qui enim tempor officia mollit commodo magna in occaecat. Tempor voluptate nisi sunt do enim incididunt reprehenderit culpa sint veniam culpa cupidatat do dolor.
+              E foi assim que a <strong>Clínica da Pele Cristiane Berto</strong> surgiu: construída com base em uma filosofia de que a clínica de estética poderia oferecer tratamentos especializados, excelentes e inovadores, tudo dentro de um ambiente restaurador e elegante. Conforto e experiência agora podem ir de mãos dadas.
               </Grid>
 
 
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Divider />
               </Grid>
 
@@ -149,7 +149,7 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
                 >
                   Ler mais
                 </Button>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Paper>
         </Grid>

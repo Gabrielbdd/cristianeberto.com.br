@@ -36,15 +36,15 @@ const styles = (theme: Theme): StyleRules => ({
     height: '40px',
     padding: '0',
     borderRadius: '90px',
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
 
     '&[disabled=""]': {
-      color: theme.palette.primary[200]
+      color: theme.palette.primary.light
     }
   },
 
   more: {
-    color: theme.palette.primary[500]
+    color: theme.palette.primary.main
   }
 })
 

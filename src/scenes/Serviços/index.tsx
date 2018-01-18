@@ -19,8 +19,6 @@ import Container from '../../components/Container'
 const injectStyles = withStyles(theme => ({
   root: {
     position: 'relative' as 'relative',
-    maxWidth: theme.breakpoints.values.sm,
-    margin: '20px auto 0 auto',
     padding: 8,
     color: theme.palette.grey.A400,
 
@@ -76,7 +74,6 @@ const injectStyles = withStyles(theme => ({
   [theme.breakpoints.up('md')]: {
     root: {
       padding: '40px',
-      maxWidth: theme.breakpoints.values.md
     },
 
     categories__detail__description: {
@@ -97,8 +94,8 @@ class Serviços extends React.Component<IProps & StyledComponent> {
   render () {
     const { classes, data } = this.props
     const servicesEdges     = data.services.edges as MarkdownRemarkEdge[]
-    const categoriesEdges   = data.categories.edges as MarkdownRemarkEdge[]
     const servicesGroup     = groupBy(servicesEdges, 'node.frontmatter.category')
+    const categoriesEdges   = data.categories.edges as MarkdownRemarkEdge[]
     const categoriesMap     = categoriesEdges.reduce((map, { node }) => {
       map.set(node!.frontmatter!.name!, node!)
 
@@ -118,9 +115,10 @@ class Serviços extends React.Component<IProps & StyledComponent> {
 
           return (
             <div id={categoryName.toLocaleLowerCase()} className={classes.categories} key={categoryName}>
-              <Title>
+              <Title leftLine>
                 {categoryName}
               </Title>
+
               <div className={classes.categories__detail}>
                 <Img
                   sizes={image.sizes}

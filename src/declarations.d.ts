@@ -7,3 +7,5 @@ declare module '*/package.json' {
 declare const graphql: (query: TemplateStringsArray) => void
 
 declare module 'gatsby-image'
+
+declare module 'react-slick'

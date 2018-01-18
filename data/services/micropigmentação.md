@@ -1,5 +1,5 @@
 ---
-category: "Face"
+category: "Sobrancelha"
 name: "Micropigmentação"
 price: 160
 time: 90

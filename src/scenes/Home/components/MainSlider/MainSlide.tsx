@@ -11,6 +11,7 @@ export type IMainSlide = {
   title: string
   html: string
   position: string
+  order: number
 }
 
 const injectStyles = withStyles(theme => ({
@@ -48,9 +49,9 @@ const Slide: React.StatelessComponent<IMainSlideProps & StyledComponent> =
 
     <MainSlideText
       content={{
-        title: title,
-        html: html,
-        position: position
+        title,
+        html,
+        position
       }}
     />
   </div>

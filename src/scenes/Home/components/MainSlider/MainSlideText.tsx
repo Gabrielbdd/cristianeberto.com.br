@@ -45,7 +45,7 @@ const injectStyles = withStyles(theme => ({
     position: 'absolute' as 'absolute',
     top: 0,
     width: '100%',
-    maxWidth: 300,
+    maxWidth: 390,
     height: '100%',
     display: 'flex',
     flexDirection: 'column' as 'column',
@@ -54,7 +54,7 @@ const injectStyles = withStyles(theme => ({
 
     '& h2': {
       marginBottom: 10,
-      color: theme.palette.primary[500]
+      color: theme.palette.primary.main
     },
 
     '& p': {
@@ -64,7 +64,7 @@ const injectStyles = withStyles(theme => ({
 
   [theme.breakpoints.up('md')]: {
     root: {
-      maxWidth: 550,
+      maxWidth: 560,
       fontSize: 30,
     }
   }

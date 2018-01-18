@@ -2,6 +2,8 @@
 title: "Bem vinda"
 image: "welcome.jpg"
 position: "LB"
-order: 2
+order: 0
 ---
-Eu dolore consectetur commodo sit laborum cillum culpa aliqua magna qui in.
+Á clínica da pele **Cristiane Berto**
+
+Tratamentos exclusivos em um ambiente tranquilo e relaxante 

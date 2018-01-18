@@ -1,126 +1,71 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { Tabs, Tab } from 'material-ui'
-import {
-  StyleRules,
-  WithStyles,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
+import { Tabs, Tab, withStyles } from 'material-ui'
+import { StyledComponent } from 'utils/styledProps'
 
 import './index.css'
 
-import * as freshDesk from '../freshChat'
-import Footer from '../components/Footer'
+import FreshChat from '../components/FreshChat'
 import Container from '../components/Container'
+import Header from '../components/Header'
+import Main from '../components/Main'
+import Footer from '../components/Footer'
 
-import returnType from '../utils/returnType'
-
-const styles = (theme: Theme): StyleRules => ({
-  root: {
-    color: theme.palette.grey[800],
-
-    '& .header': {
-      padding: 8
-    },
-
-    '& a': {
-      textDecoration: 'none',
-      color: 'inherit',
-      transition: `color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn}`,
-
-      '&:hover': {
-        color: theme.palette.primary[500]
-      }
-    },
-
-    '& .outstanding': {
-      color: theme.palette.primary[200],
-      textDecoration: "underline",
-      cursor: 'pointer',
-    }
-  },
-
-  [theme.breakpoints.up('md')]: {
+const injectStyles = withStyles(theme => {
+  return {
     root: {
-      '& .header': {
-        paddingLeft: 48,
-        paddingRight: 48
+      color: theme.palette.grey[800],
+  
+      '& a': {
+        textDecoration: 'none',
+        color: 'inherit',
+        transition: `color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn}`,
+  
+        '&:hover': {
+          color: theme.palette.primary.main
+        }
+      },
+  
+      '& .outstanding': {
+        color: theme.palette.primary.light,
+        textDecoration: "underline",
+        cursor: 'pointer',
       }
-    }
+    },
   }
 })
 
-const stylesType = returnType(styles)
-
-const tabPaths = [
-  '/',
-  '/blog',
-  '/serviços',
-  '/sobre',
-  '/contato'
-]
-
-interface IProps extends WithStyles<keyof typeof stylesType> {
+interface IProps {
   children: any
   location: any
   history: any
 }
 
-class DefaultLayout extends React.Component<IProps> {
-  handletabChange = (e: any, tabIndex: number) => {
-    this.props.history.push(tabPaths[tabIndex])
-  }
-
-  componentDidMount () {
-    freshDesk.init()
-  }
-
+@injectStyles
+class DefaultLayout extends React.Component<IProps & StyledComponent> {
   render () {
-    const { classes } = this.props
-    const activeTab = tabPaths.slice(1).findIndex((tabPath, index) => {
-      if (tabPath === '/') {
-        return this.props.location.pathname === tabPath
-      } else {
-        return this.props.location.pathname.startsWith(tabPath)
-      }
-    }) + 1 || 0
+    const { classes, history, location } = this.props
 
     return (
-      <div className={classes.root}>
+      <Container className={classes.root}>
         <Helmet defaultTitle="Cristiane Berto" titleTemplate="%s | Cristiane Berto">
           <meta name="og:type" content="website" />
           <meta name="og:site_name" content="Cristiane Berto" />
           <html lang="pt-br" />
         </Helmet>
 
-        <header>
-          <Container className="header">
-            <Tabs
-              value={activeTab}
-              onChange={this.handletabChange}
-              indicatorColor="primary"
-              textColor="primary"
-              scrollable
-              scrollButtons="off"
-              fullWidth
-            >
-              <Tab label="Home" />
-              <Tab label="Blog" />
-              <Tab label="Serviços" />
-              <Tab label="Sobre" />
-              <Tab label="Contato" />
-            </Tabs>
-          </Container>
-        </header>
+        <Header history={history} location={location} />
 
-        {this.props.children()}
-
+        <Main>
+          {this.props.children()}
+        </Main>
+        
         <Footer />
-      </div>
+
+        <FreshChat />
+      </Container>
     )
   }
 }
 
-export default withStyles(styles)(DefaultLayout)
+export default DefaultLayout

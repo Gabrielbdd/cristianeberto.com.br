@@ -17,7 +17,7 @@ const injectStyles = withStyles(theme => ({
       bottom: -5,
 
       '& button:before': {
-        color: `${theme.palette.primary[500]} !important`
+        color: `${theme.palette.primary.main} !important`
       }
     }
   }
@@ -46,7 +46,7 @@ class ServicesSlide extends React.Component<IServicesSlidesProps & StyledCompone
         ]}
       >
         {slides.map(({ image, name, description }, index) => (
-          <div key={name}>
+          <div key={name} onDragStart={e => e.preventDefault()}>
             <ServiceSlide
               image={image}
               name={name}

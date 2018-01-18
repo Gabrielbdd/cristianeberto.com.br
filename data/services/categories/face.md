@@ -1,5 +1,5 @@
 ---
 name: "Face"
-description: "Aliqua minim enim et enim aliqua nulla nostrud sint eu irure labore pariatur duis occaecat. Pariatur veniam eu veniam anim sit. Sint pariatur labore ex do adipisicing commodo. Anim mollit minim mollit ut adipisicing sunt."
+description: "Uma região especial merece cuidados únicos e específicos. Cravos, espinhas, rugas e linhas de expressões? São a nossa especialidade"
 image: "face.jpg"
 ---

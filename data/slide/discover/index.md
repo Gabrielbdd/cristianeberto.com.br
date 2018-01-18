@@ -2,10 +2,10 @@
 title: "Descubra"
 image: "discover.jpg"
 position: "RM"
-order: 0
+order: 2
 ---
-A place of calm and serenity
+Um lugar calmo e sereno
 
-A wide range of treatments
+Uma ampla quantidade de tratamentos
 
-Highly trained therapists
+Profissionais altamente qualificados

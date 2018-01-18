@@ -79,7 +79,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
       },
       {
         name: 'WhatsApp',
-        shareLink: `https://api.whatsapp.com/send?text=cristianeberto.com/${slug}`
+        shareLink: `https://api.whatsapp.com/send?text=cristianeberto.com${slug}`
       }
     ]
     const { anchorEl } = this.state
@@ -116,7 +116,8 @@ class Post extends React.Component<IPostProps & WithStyles> {
               vertical: 'top',
               horizontal: 'left'
             }}
-            onRequestClose={this.handlePopoverResquestClose}
+
+            onClose={this.handlePopoverResquestClose}
           >
             <SocialShareList socialMedias={socialMedias} />
           </Popover>

@@ -1,7 +1,7 @@
 ---
 category: "Face"
 name: "Limpeza de pele"
-price: 90
+price: 50
 time: 40
 ---
 

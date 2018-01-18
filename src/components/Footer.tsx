@@ -1,21 +1,14 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 import Link from 'gatsby-link'
+import { FaFacebook, FaInstagram } from 'react-icons/lib/fa'
 import { Grid, Paper } from 'material-ui'
-import {
-  StyleRules,
-  WithStyles,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
-
-import SocialIcon from './SocialIcon'
-import returnType from '../utils/returnType'
+import { withStyles } from 'material-ui/styles'
+import { StyledComponent } from 'utils/styledProps'
 
 import cristianeBertoLogo = require('../assets/cristiane-berto.png')
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     maxWidth: theme.breakpoints.values.sm,
     margin: '40px auto 0 auto',
@@ -60,8 +53,15 @@ const styles = (theme: Theme): StyleRules => ({
       backgroundColor: '#f9f9f9',
 
       '& .social__list': {
+        '& .icon': {
+          borderRadius: 90,
+          padding: 10,
+          color: '#FFF',
+          backgroundColor: theme.palette.grey[800],
+        },
+
         '& > *': {
-          marginBottom: '15px'
+          marginBottom: 15,
         },
 
         '& > *:last-child': {
@@ -69,12 +69,12 @@ const styles = (theme: Theme): StyleRules => ({
         },
 
         '& svg': {
-          width: '50px',
-          height: '50px',
-          transition: `fill ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn}`,
+          width: 50,
+          height: 50,
+          transition: `background-color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn}`,
             
           '&:hover': {
-            fill: theme.palette.primary[500] + '!important'
+            backgroundColor: theme.palette.primary.main + '!important'
           }
         }
       }
@@ -119,13 +119,10 @@ const styles = (theme: Theme): StyleRules => ({
       },
     }
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IProps extends WithStyles<keyof typeof stylesType> {}
-
-class Footer extends React.Component<IProps> {
+@injectStyles
+class Footer extends React.Component<StyledComponent> {
   render () {
     const { classes } = this.props
 
@@ -184,8 +181,16 @@ class Footer extends React.Component<IProps> {
           <div className="content">
             <p className="title">Continue conosco</p>
             <ul className="social__list">
-              <li><a href="https://facebook.com/cristianebertooficial" target="_blank"><SocialIcon type="Facebook" fill="#333" /></a></li>
-              <li><a href="https://instagram.com/cristianebertooficial" target="_blank"><SocialIcon type="Instagram" fill="#333" /></a></li>
+              <li>
+                <a href="https://facebook.com/cristianebertooficial" target="_blank">
+                  <FaFacebook className="icon facebook" />
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/cristianebertooficial" target="_blank">
+                  <FaInstagram className="icon instagram" />
+                </a>
+              </li>
             </ul>
           </div>
         </Grid>
@@ -194,4 +199,4 @@ class Footer extends React.Component<IProps> {
   }
 }
 
-export default withStyles(styles)(Footer)
+export default Footer

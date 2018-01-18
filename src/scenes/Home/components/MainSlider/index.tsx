@@ -17,7 +17,7 @@ const MainsSlide: React.StatelessComponent<IMainsSlidesProps> = ({ slides }) => 
       autoplay
       autoplaySpeed={5000}
     >
-      {slides.map(slideProps => (
+      {slides.sort((a, b) => a.order - b.order).map(slideProps => (
         <div key={slideProps.title}>
           <MainSlide {...slideProps} />
         </div>

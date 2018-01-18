@@ -8,6 +8,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: `tomato`,
+        showSpinner: false,
+      },
+    },
+
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'data',

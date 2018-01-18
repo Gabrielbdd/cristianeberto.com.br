@@ -10,6 +10,7 @@ export const pageQuery = graphql`
       edges {
         node {
           frontmatter {
+            order
             position
             title
             image {

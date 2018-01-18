@@ -22,7 +22,7 @@ const styles = (theme: Theme): StyleRules => ({
     margin: '0 7px',
     borderRadius: '90px',
     boxShadow: theme.shadows[2],
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
     cursor: 'pointer',
     transition: `all ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeIn}`,
 
@@ -35,7 +35,7 @@ const styles = (theme: Theme): StyleRules => ({
 
   paginationButtonActive: {
     color: 'white',
-    backgroundColor: theme.palette.primary[500]
+    backgroundColor: theme.palette.primary.main
   }
 })
 

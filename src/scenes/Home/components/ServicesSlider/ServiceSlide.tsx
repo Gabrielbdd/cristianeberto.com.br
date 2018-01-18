@@ -25,7 +25,7 @@ const injectStyles = withStyles(theme => ({
       opacity: 0.3,
 
       '&:hover': {
-        background: theme.palette.primary[500]
+        background: theme.palette.primary.main
       }
     },
 
@@ -49,7 +49,7 @@ const injectStyles = withStyles(theme => ({
         margin: "10px auto 0",
         content: "''",
         display: "block",
-        background: "#3f51b5",
+        background: theme.palette.primary.main,
       }
     },
 

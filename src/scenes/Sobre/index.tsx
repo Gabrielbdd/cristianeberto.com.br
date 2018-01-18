@@ -3,7 +3,7 @@ import * as classnames from 'classnames'
 import Slider from 'react-slick'
 import Helmet from 'react-helmet'
 import { Grid, Hidden, withStyles } from 'material-ui'
-import { GridList, GridListTile } from 'material-ui/GridList'
+import GridList, { GridListTile } from 'material-ui/GridList'
 import Img from 'gatsby-image'
 
 import { ImageSharpConnection } from 'graphql-types'
@@ -13,8 +13,6 @@ import Container from '../../components/Container'
 
 const injectStyles = withStyles(theme => ({
   root: {
-    maxWidth: theme.breakpoints.values.sm,
-    margin: '20px auto 0 auto',
     padding: 8,
 
     '& > *': {
@@ -32,7 +30,6 @@ const injectStyles = withStyles(theme => ({
 
   [theme.breakpoints.up('md')]: {
     root: {
-      maxWidth: theme.breakpoints.values.md,
       padding: '0 40px'
     }
   }
@@ -67,7 +64,7 @@ class Sobre extends React.Component<IProps & StyledComponent> {
             <Hidden smDown>
               <GridList>
                 {internalImages.map(({ sizes, id }) => (
-                  <GridListTile key={id}>
+                  <GridListTile key={id} >
                     <Img sizes={sizes} />
                   </GridListTile>
                 ))}
@@ -77,7 +74,7 @@ class Sobre extends React.Component<IProps & StyledComponent> {
             <Hidden mdUp>
               <Slider dots arrows={false}>
                 {internalImages.map(({ sizes, id }) => (
-                  <div key={id} draggable={false}>
+                  <div key={id} onDragStart={e => e.preventDefault()} >
                     <Img sizes={sizes} />
                   </div>
                 ))}

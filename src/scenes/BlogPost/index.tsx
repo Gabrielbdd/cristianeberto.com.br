@@ -20,9 +20,7 @@ import Author from './components/Author'
 
 const styles = (theme: Theme): StyleRules => ({
   root: {
-    maxWidth: '1000px',
     padding: '30px 20px',
-    margin: '0 auto',
     color: theme.palette.text.primary,
     
     '& p': {
@@ -48,14 +46,14 @@ const styles = (theme: Theme): StyleRules => ({
   title: {
     marginBottom: '20px',
     textAlign: 'center',
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
     fontSize: '1.5em',
 
     '&::after': {
       content: `''`,
       height: '2px',
       width: '50px',
-      background: theme.palette.primary[500],
+      background: theme.palette.primary.main,
       display: 'block',
       margin: '20px auto 0'
     }
@@ -70,15 +68,15 @@ const styles = (theme: Theme): StyleRules => ({
 
   [theme.breakpoints.up('sm')]: {
     root: {
-      paddingLeft: '140px',
-      paddingRight: '140px'
+      paddingLeft: 100,
+      paddingRight: 100,
     }
   },
 
   [theme.breakpoints.up('md')]: {
     root: {
-      paddingLeft: '180px',
-      paddingRight: '180px'
+      paddingLeft: 120,
+      paddingRight: 120,
     }
   }
 })

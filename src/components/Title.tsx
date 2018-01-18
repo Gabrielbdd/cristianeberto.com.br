@@ -22,7 +22,7 @@ const injectStyles = withStyles(theme => ({
       width: 5,
       height: 21,
       transform: "translateY(-50%)",
-      backgroundColor: theme.palette.primary[500]
+      background: theme.palette.primary.main
     }
   },
 }))
