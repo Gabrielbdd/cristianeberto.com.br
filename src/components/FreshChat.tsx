@@ -1,5 +1,5 @@
 export default function FreshChat () {
-  if (window) {
+  if (typeof window != 'undefined') {
     window.fcSettings = {
       token: "97e1d461-16ec-44fb-8d56-c093f272b6fe",
       host: "https://wchat.freshchat.com",
