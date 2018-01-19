@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { withStyles } from 'material-ui/styles'
+import Img from 'gatsby-image'
 
 import MainSlideText from './MainSlideText'
 
@@ -19,10 +20,10 @@ const injectStyles = withStyles(theme => ({
     position: 'relative' as 'relative',
 
     '& .image': {
-      width: "100%",
-      height: 300,
-      backgroundSize: "cover !important",
-      backgroundPosition: "center !important",
+      // width: "100%",
+      // height: 300,
+      // backgroundSize: "cover !important",
+      // backgroundPosition: "center !important",
     }
   },
 
@@ -40,12 +41,7 @@ interface IMainSlideProps extends IMainSlide {}
 const Slide: React.StatelessComponent<IMainSlideProps & StyledComponent> = 
 ({ classes, image, title, html, position }) => (
   <div className={classes.root} >
-    <div
-      className="image"
-      style={{
-        background: `url(${image.resize!.src})`
-      }}
-    />
+    <Img sizes={image.sizes} />
 
     <MainSlideText
       content={{
