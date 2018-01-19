@@ -23,7 +23,7 @@ exports.onInitialClientRender = () => {
 
 
 exports.wrapRootComponent = ({ Root }) => () => (
-  <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+  <MuiThemeProvider theme={theme}>
     <Root />
   </MuiThemeProvider>
 )
