@@ -46,7 +46,6 @@ module.exports = class HTML extends React.Component<HtmlProps> {
           <link rel="manifest" href="/manifest.json" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d7b46a" />
           <meta name="theme-color" content="#ffffff" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
           {css}
         </head>
         <body {...this.props.bodyAttributes}>

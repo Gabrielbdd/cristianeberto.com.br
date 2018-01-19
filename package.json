@@ -51,6 +51,7 @@
     "slash": "1.0.0",
     "slick-carousel": "^1.8.1",
     "ts-loader": "^2.3.7",
+    "typeface-roboto": "^0.0.50",
     "typescript": "2.5.3"
   },
   "devDependencies": {

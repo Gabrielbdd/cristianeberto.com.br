@@ -4,6 +4,7 @@ import { Tabs, Tab, withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
 
 import './index.css'
+require('typeface-roboto')
 
 import FreshChat from '../components/FreshChat'
 import Container from '../components/Container'
