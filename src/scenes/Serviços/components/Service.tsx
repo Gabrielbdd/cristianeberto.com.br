@@ -10,7 +10,7 @@ import { MarkdownRemark } from 'graphql-types'
 const injectStyles = withStyles(theme => ({
   root: {
     position: 'relative' as 'relative',
-    padding: '7px 14px',
+    padding: '12px 20px',
 
     '& .content': {
       paddingBottom: 16,

@@ -2,6 +2,7 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 import { Tabs, Tab, withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
+import withRoot from '../withRoot'
 
 import './index.css'
 require('typeface-roboto')
@@ -42,6 +43,7 @@ interface IProps {
   history: any
 }
 
+@withRoot
 @injectStyles
 class DefaultLayout extends React.Component<IProps & StyledComponent> {
   render () {

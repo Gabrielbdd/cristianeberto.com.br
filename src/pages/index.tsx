@@ -1,8 +1,9 @@
 import * as React from 'react'
-
 import Home from '../scenes/Home'
+// import withRoot from '../withRoot'
 
 export default Home
+// export default withRoot(Home)
 
 export const pageQuery = graphql`
   query HomePage {
@@ -17,16 +18,7 @@ export const pageQuery = graphql`
               children {
                 ... on ImageSharp {
                   sizes(maxWidth: 864, maxHeight: 400) {
-                    base64
-                    tracedSVG
-                    aspectRatio
-                    src
-                    srcSet
-                    srcWebp
-                    srcSetWebp
-                    sizes
-                    originalImg
-                    originalName
+                    ...GatsbyImageSharpSizes
                   }
                 }
               }
@@ -46,8 +38,11 @@ export const pageQuery = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  resize(width: 200, height: 200) {
-                    src
+                  # resize(width: 200, height: 200) {
+                  #   src
+                  # }
+                  resolutions(width: 200, height: 200) {
+                    ...GatsbyImageSharpResolutions
                   }
                 }
               }

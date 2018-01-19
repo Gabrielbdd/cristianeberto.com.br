@@ -47,7 +47,7 @@ module.exports = {
         display: 'minimal-ui'
       }
     },
-    `gatsby-plugin-material-ui`
+    // `gatsby-plugin-material-ui`
     //'gatsby-plugin-offline',
   ]
 }

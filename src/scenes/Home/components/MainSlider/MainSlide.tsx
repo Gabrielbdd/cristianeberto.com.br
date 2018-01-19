@@ -39,9 +39,9 @@ const injectStyles = withStyles(theme => ({
 interface IMainSlideProps extends IMainSlide {}
 
 const Slide: React.StatelessComponent<IMainSlideProps & StyledComponent> = 
-({ classes, image, title, html, position }) => (
-  <div className={classes.root} >
-    <Img sizes={image.sizes} />
+({ classes, image, title, html, position, onLoad }) => (
+  <div className={classes.root} onDragStart={e => e.preventDefault()} >
+    <Img sizes={image.sizes} onLoad={onLoad} />
 
     <MainSlideText
       content={{

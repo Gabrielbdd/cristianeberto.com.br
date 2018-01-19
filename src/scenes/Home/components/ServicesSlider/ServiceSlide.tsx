@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Divider, withStyles } from 'material-ui'
 import Link, { navigateTo } from 'gatsby-link'
+import Img from 'gatsby-image'
 
 import { ImageSharp } from 'graphql-types'
 import { StyledComponent } from 'utils/styledProps'
@@ -18,24 +19,25 @@ const injectStyles = withStyles(theme => ({
     position: 'relative' as 'relative',
     padding: '20px 0',
 
-    '& .image-shadow': {
-      height: '100%',
-      borderRadius: "inherit",
-      transition: `all 250ms ${theme.transitions.easing.easeIn}`,
-      opacity: 0.3,
-
-      '&:hover': {
-        background: theme.palette.primary.main
-      }
-    },
-
     '& .image': {
-      width: 200,
-      height: 200,
+      display: 'block !important',
       margin: '0 auto',
       borderRadius: 180,
-      backgroundSize: "cover !important",
-      backgroundPosition: "center !important"
+
+      '&:before': {
+        position: 'absolute',
+        display: 'block',
+        content: "''",
+        height: '100%',
+        width: '100%',
+        zIndex: 10000,
+        opacity: '0.3',
+        transition: `background-color .${theme.transitions.duration.standard}s ${theme.transitions.easing.easeIn}`
+      },
+
+      '&:hover:before': {
+        backgroundColor: theme.palette.primary.main
+      }
     },
 
     '& .name': {
@@ -65,14 +67,15 @@ const ServiceSlide = (props: IServiceSlideProps & StyledComponent) => {
   return (
     <div className={classes.root}>
       <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
-          <div
+          {/* <div
             className="image"
             style={{
               backgroundImage: `url(${image.resize!.src})`
             }}
           >
             <div className="image-shadow" />
-          </div>
+          </div> */}
+          <Img resolutions={image.resolutions} className="image" />
       </Link>
 
       <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
