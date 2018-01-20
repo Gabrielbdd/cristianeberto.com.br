@@ -21,7 +21,7 @@ const injectStyles = withStyles(theme => ({
 
     '& .image': {
       // width: "100%",
-      // height: 300,
+      height: 300,
       // backgroundSize: "cover !important",
       // backgroundPosition: "center !important",
     }
@@ -38,10 +38,10 @@ const injectStyles = withStyles(theme => ({
 
 interface IMainSlideProps extends IMainSlide {}
 
-const Slide: React.StatelessComponent<IMainSlideProps & StyledComponent> = 
-({ classes, image, title, html, position, onLoad }) => (
+const Slide: React.SFC<IMainSlideProps & StyledComponent> = 
+({ classes, image: { sizes }, title, html, position }) => (
   <div className={classes.root} onDragStart={e => e.preventDefault()} >
-    <Img sizes={image.sizes} onLoad={onLoad} />
+    <Img sizes={sizes} className="image" />
 
     <MainSlideText
       content={{

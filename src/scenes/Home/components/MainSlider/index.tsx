@@ -36,16 +36,50 @@ class MainsSlide extends React.Component<IMainsSlidesProps & StyledComponent> {
   state = {
     loadedSlidesCount: 0
   }
+  
+  componentDidMount () {
+    const checkSlides = () => {
+      const $slideImages = document.querySelectorAll<HTMLImageElement>('.slick-slide:not(.slick-cloned) .gatsby-image-wrapper img[src*="data:image"]')
+
+      if ($slideImages.length === this.props.slides.length) {
+        const increaseLoadedCount = () => {
+          this.setState({ loadedSlidesCount: this.state.loadedSlidesCount + 1 })
+        }
+
+        Array.from($slideImages).forEach($slideImage => {
+          if ($slideImage.complete) {
+            increaseLoadedCount()
+          } else {
+            $slideImage.addEventListener('load', increaseLoadedCount)
+          }
+        })
+
+        off()
+      }
+    }
+
+    const imagesObserver = new MutationObserver(checkSlides)
+  
+    imagesObserver.observe(document.documentElement, { subtree: true, childList: true })
+    
+    checkSlides()
+
+    function off () {
+      imagesObserver.disconnect()
+    }
+  }
 
   render () {
     const { classes, slides } = this.props
     const { loadedSlidesCount } = this.state
 
     const loading = loadedSlidesCount < slides.length
-    // const loading = true
+    // const loading = false
 
     return (
-      <div className={classNames(classes.root, { loading })}>
+      <div
+        className={classNames(classes.root, { loading })}
+      >
         <Slider
           className={classNames({ hidden: loading })}
           arrows={false}
@@ -57,7 +91,6 @@ class MainsSlide extends React.Component<IMainsSlidesProps & StyledComponent> {
             <div key={slideProps.title}>
               <MainSlide
                 {...slideProps}
-                onLoad={() => this.setState({ loadedSlidesCount: loadedSlidesCount + 1 })}
               />
             </div>
           ))}
