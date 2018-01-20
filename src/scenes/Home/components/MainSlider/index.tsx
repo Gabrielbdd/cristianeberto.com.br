@@ -85,7 +85,7 @@ class MainsSlide extends React.Component<IMainsSlidesProps & StyledComponent> {
           arrows={false}
           infinite
           autoplay
-          autoplaySpeed={5000}
+          autoplaySpeed={7000}
         >
           {slides.sort((a, b) => Number(a.order) - Number(b.order)).map(slideProps => (
             <div key={slideProps.title}>
