@@ -39,12 +39,12 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Cristiane Berto',
-        short_name: 'Cris Berto',
+        name: 'Cristiane Berto - Clínica da Pele',
+        short_name: 'Cristiane Berto',
         start_url: '/',
         background_color: '#f7f7f7',
         theme_color: '#d7b46a',
-        display: 'minimal-ui',
+        display: 'standalone',
         icons: [
           {
             src: `android-chrome-192x192.png`,
