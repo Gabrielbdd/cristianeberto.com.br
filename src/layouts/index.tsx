@@ -68,26 +68,25 @@ class DefaultLayout extends React.Component<IProps & StyledComponent> {
 
         observer.observe($main, { childList: true })
 
-        setTimeout(() => {
-          if (loading) {
-            NProgress.start()
+        if (loading) {
+          NProgress.start()
 
-            incrementProgress()
+          incrementProgress()
 
-            function incrementProgress () {
-              setTimeout(() => {
-                if (NProgress.isStarted()) {
-                  NProgress.inc()
-                  incrementProgress()
-                }
-              }, 250)
-            }
+          function incrementProgress () {
+            setTimeout(() => {
+              if (NProgress.isStarted()) {
+                NProgress.inc(Math.random() * 0.022)
+                incrementProgress()
+              }
+            }, 250)
           }
-        }, 1000)
-
+        }
       }
 
       navigateTo(path)
+
+      // setTimeout(() => navigateTo(path), 5000)
     }
   }
 
