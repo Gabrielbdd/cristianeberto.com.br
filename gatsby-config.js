@@ -40,14 +40,25 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Cristiane Berto',
-        short_name: 'Cristiane Berto',
+        short_name: 'Cris Berto',
         start_url: '/',
         background_color: '#f7f7f7',
-        theme_color: '#191919',
-        display: 'minimal-ui'
+        theme_color: '##d7b46a;',
+        display: 'minimal-ui',
+        icons: [
+          {
+            src: `android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `android-chrome-256x256.png`,
+            sizes: `256x256`,
+            type: `image/png`,
+          },
+        ]
       }
     },
-    // `gatsby-plugin-material-ui`
-    //'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
   ]
 }

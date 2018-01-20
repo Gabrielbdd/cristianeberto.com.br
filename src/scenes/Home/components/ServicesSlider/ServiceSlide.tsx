@@ -19,10 +19,10 @@ const injectStyles = withStyles(theme => ({
     position: 'relative' as 'relative',
     padding: '20px 0',
 
-    '& .image': {
-      display: 'block !important',
+    '& .taint': {
+      display: 'table',
+      position: 'relative',
       margin: '0 auto',
-      borderRadius: 180,
 
       '&:before': {
         position: 'absolute',
@@ -32,12 +32,17 @@ const injectStyles = withStyles(theme => ({
         width: '100%',
         zIndex: 10000,
         opacity: '0.3',
-        transition: `background-color .${theme.transitions.duration.standard}s ${theme.transitions.easing.easeIn}`
+        transition: `background-color .${theme.transitions.duration.standard}s ${theme.transitions.easing.easeIn}`,
+        borderRadius: 180,
       },
 
       '&:hover:before': {
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
       }
+    },
+
+    '& .image': {
+      borderRadius: 180,
     },
 
     '& .name': {
@@ -67,15 +72,14 @@ const ServiceSlide = (props: IServiceSlideProps & StyledComponent) => {
   return (
     <div className={classes.root}>
       <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
-          {/* <div
+        {/* <Img resolutions={image.resolutions} className="image" /> */}
+        <figure className="taint">
+          <img
+            src={image.resolutions!.src!}
+            srcSet={image.resolutions!.srcSet!}
             className="image"
-            style={{
-              backgroundImage: `url(${image.resize!.src})`
-            }}
-          >
-            <div className="image-shadow" />
-          </div> */}
-          <Img resolutions={image.resolutions} className="image" />
+          />
+        </figure>
       </Link>
 
       <Link to={`/serviços#${name.toLocaleLowerCase()}`}>

@@ -144,7 +144,7 @@ class Footer extends React.Component<StyledComponent> {
               <li><Link to="#">Início</Link></li>
               <li><Link to="/blog">Blog</Link></li>
               <li><Link to="/serviços">Serviços</Link></li>
-              <li><Link to="/sobre">Sobre nós</Link></li>
+              {/* <li><Link to="/sobre">Sobre nós</Link></li> */}
               <li><Link to="/contato">Contato</Link></li>
             </ul>
           </div>
