@@ -43,7 +43,7 @@ module.exports = {
         short_name: 'Cris Berto',
         start_url: '/',
         background_color: '#f7f7f7',
-        theme_color: '##d7b46a;',
+        theme_color: '#d7b46a',
         display: 'minimal-ui',
         icons: [
           {

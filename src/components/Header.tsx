@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Link from 'gatsby-link'
 import { Tabs, Tab, withStyles } from 'material-ui'
+import { navigateTo } from 'gatsby-link'
 import { StyledComponent } from 'utils/styledProps'
 
 import cristianeBertoLogo = require('../assets/cristiane-berto.png')
@@ -39,7 +39,8 @@ const tabPaths = [
 @injectStyles
 class Header extends React.Component<IProps & StyledComponent> {
   handletabChange = (e: any, tabIndex: number) => {
-    this.props.history.push(tabPaths[tabIndex])
+    // this.props.history.push(tabPaths[tabIndex])
+    navigateTo(tabPaths[tabIndex])
   }
 
   render () {

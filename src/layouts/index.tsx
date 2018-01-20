@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import { Tabs, Tab, withStyles } from 'material-ui'
+import * as NProgress from 'nprogress'
 import { StyledComponent } from 'utils/styledProps'
 import withRoot from '../withRoot'
 
@@ -46,6 +47,50 @@ interface IProps {
 @withRoot
 @injectStyles
 class DefaultLayout extends React.Component<IProps & StyledComponent> {
+  componentDidMount () {
+    const navigateTo = window.___navigateTo
+
+    window.___navigateTo = (path: string) => {
+      const $main = document.querySelector('#___gatsby main')
+
+      if ($main) {
+        let loading = true
+
+        const observer = new MutationObserver(() => {
+          loading = false
+
+          observer.disconnect()
+
+          if (NProgress.isStarted()) {
+            NProgress.done()
+          }
+        })
+
+        observer.observe($main, { childList: true })
+
+        setTimeout(() => {
+          if (loading) {
+            NProgress.start()
+
+            incrementProgress()
+
+            function incrementProgress () {
+              setTimeout(() => {
+                if (NProgress.isStarted()) {
+                  NProgress.inc()
+                  incrementProgress()
+                }
+              }, 250)
+            }
+          }
+        }, 1000)
+
+      }
+
+      navigateTo(path)
+    }
+  }
+
   render () {
     const { classes, history, location } = this.props
 
