@@ -1,31 +1,31 @@
 import * as React from 'react'
-import Slider from 'react-slick'
-import { CircularProgress, withStyles } from 'material-ui'
+import { withStyles } from 'material-ui'
 import * as classNames from 'classnames'
 import { ImageSharp } from 'graphql-types'
 import { StyledComponent } from 'utils/styledProps'
 import MainSlide, { IMainSlide } from './MainSlide'
+import Skeleton from '../../../../components/Skeleton'
+import Slider from '../../../../components/Slider'
 
-const injectStyles = withStyles({
+const injectStyles = withStyles(theme => ({
   root: {
-    position: 'relative',
+    height: 300,
+    position: 'relative' as 'relative',
 
-    '&.loading': {
-      height: 400,
+    '& .skeleton': {
+      height: "100%",
+      position: "absolute",
+      width: "100%",
+      top: -3,
+    }
+  },
 
-      '& .circle': {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translateX(-50%) translateY(-50%)',
-      }
-    },
-
-    '& .hidden': {
-      visibility: 'hidden',
+  [theme.breakpoints.up('md')]: {
+    root: {
+      height: 400
     }
   }
-})
+}))
 
 interface IMainsSlidesProps {
   slides: IMainSlide[]
@@ -34,58 +34,22 @@ interface IMainsSlidesProps {
 @injectStyles
 class MainsSlide extends React.Component<IMainsSlidesProps & StyledComponent> {
   state = {
-    loadedSlidesCount: 0
+    loading: true
   }
-  
-  componentDidMount () {
-    const checkSlides = () => {
-      const $slideImages = document.querySelectorAll<HTMLImageElement>('.slick-slide:not(.slick-cloned) .gatsby-image-wrapper img[src*="data:image"]')
 
-      if ($slideImages.length === this.props.slides.length) {
-        const increaseLoadedCount = () => {
-          this.setState({ loadedSlidesCount: this.state.loadedSlidesCount + 1 })
-        }
-
-        Array.from($slideImages).forEach($slideImage => {
-          if ($slideImage.complete) {
-            increaseLoadedCount()
-          } else {
-            $slideImage.addEventListener('load', increaseLoadedCount)
-          }
-        })
-
-        off()
-      }
-    }
-
-    const imagesObserver = new MutationObserver(checkSlides)
-  
-    imagesObserver.observe(document.documentElement, { subtree: true, childList: true })
-    
-    checkSlides()
-
-    function off () {
-      imagesObserver.disconnect()
-    }
-  }
+  handleSliderLoad = () => this.setState({ loading: false })
 
   render () {
     const { classes, slides } = this.props
-    const { loadedSlidesCount } = this.state
-
-    const loading = loadedSlidesCount < slides.length
-    // const loading = false
 
     return (
-      <div
-        className={classNames(classes.root, { loading })}
-      >
+      <div className={classNames(classes.root)}>
         <Slider
-          className={classNames({ hidden: loading })}
           arrows={false}
           infinite
           autoplay
           autoplaySpeed={7000}
+          onLoad={this.handleSliderLoad}
         >
           {slides.sort((a, b) => Number(a.order) - Number(b.order)).map(slideProps => (
             <div key={slideProps.title}>
@@ -95,9 +59,11 @@ class MainsSlide extends React.Component<IMainsSlidesProps & StyledComponent> {
             </div>
           ))}
         </Slider>
-
-        {loading
-          ? <CircularProgress className="circle" size={50} />
+        
+        {this.state.loading
+          ? <div className="skeleton">
+              <Skeleton />
+            </div>
           : null}
       </div>
     )
