@@ -85,8 +85,6 @@ class DefaultLayout extends React.Component<IProps & StyledComponent> {
       }
 
       navigateTo(path)
-
-      // setTimeout(() => navigateTo(path), 5000)
     }
   }
 

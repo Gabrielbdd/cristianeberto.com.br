@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Divider, withStyles } from 'material-ui'
 import Link, { navigateTo } from 'gatsby-link'
 import Img from 'gatsby-image'
+import * as classNames from 'classnames'
 
 import { ImageSharp } from 'graphql-types'
 import { StyledComponent } from 'utils/styledProps'
@@ -43,6 +44,10 @@ const injectStyles = withStyles(theme => ({
 
     '& .image': {
       borderRadius: 180,
+
+      '& [src*="data:image"]': {
+        filter: 'blur(10px)',
+      }
     },
 
     '& .name': {
@@ -66,29 +71,27 @@ const injectStyles = withStyles(theme => ({
   }
 }))
 
-const ServiceSlide = (props: IServiceSlideProps & StyledComponent) => {
-  const { image, name, description, classes } = props
-
-  return (
-    <div className={classes.root}>
-      <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
-        {/* <Img resolutions={image.resolutions} className="image" /> */}
-        <figure className="taint">
-          <img
-            src={image.resolutions!.src!}
-            srcSet={image.resolutions!.srcSet!}
-            className="image"
-          />
-        </figure>
-      </Link>
-
-      <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
-        <h3 className="name">{name}</h3>
-      </Link>
-
-      <div className="description">{description}</div>
-    </div>
-  )
+@injectStyles
+class ServiceSlide extends React.Component<IServiceSlideProps & StyledComponent> {
+  render () {
+    const { image, name, description, classes } = this.props
+  
+    return (
+      <div className={classes.root}>
+        <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
+          <figure className="taint">
+            <Img resolutions={image.resolutions} className="image" />
+          </figure>
+        </Link>
+  
+        <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
+          <h3 className="name">{name}</h3>
+        </Link>
+  
+        <div className="description">{description}</div>
+      </div>
+    )
+  }
 }
 
-export default injectStyles(ServiceSlide)
+export default ServiceSlide

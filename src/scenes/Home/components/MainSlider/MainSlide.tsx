@@ -20,10 +20,11 @@ const injectStyles = withStyles(theme => ({
     position: 'relative' as 'relative',
 
     '& .image': {
-      // width: "100%",
       height: 300,
-      // backgroundSize: "cover !important",
-      // backgroundPosition: "center !important",
+
+      '& [src*="data:image"]': {
+        filter: 'blur(10px)',
+      }
     }
   },
 
