@@ -1,14 +1,12 @@
 import * as React from 'react'
 import { Grid } from 'material-ui'
-import { Theme, WithStyles, StyledComponentProps, withStyles } from 'material-ui/styles'
-
-import { ImageSharp, MarkdownRemarkEdge } from '../../../../graphql-types'
-
-import returnType from '../../../../utils/returnType'
-
+import { Theme, withStyles } from 'material-ui/styles'
+import { ImageSharp, MarkdownRemarkEdge } from 'graphql-types'
+import normalizeAlt from '../../../../utils/normalizeAlt'
 import Post from './Post'
 
-const styles = (theme: Theme) => ({
+
+const injectStyles = withStyles(theme => ({
   root: {
     width: '100%',
     flex: 1,
@@ -20,15 +18,13 @@ const styles = (theme: Theme) => ({
       padding: '40px 110px'
     }
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IPostsViewProps extends  WithStyles<keyof typeof stylesType> {
+interface IPostsViewProps {
   posts: MarkdownRemarkEdge[]
 }
 
-const PostsView = ({ posts, classes }: IPostsViewProps) => (
+const PostsView = injectStyles<IPostsViewProps>(({ posts, classes }) => (
   <Grid
     container
     className={classes.root}
@@ -50,6 +46,7 @@ const PostsView = ({ posts, classes }: IPostsViewProps) => (
               title={frontmatter!.title!}
               slug={slug!}
               sizes={cover.sizes}
+              alt={normalizeAlt(frontmatter!.image!.name!)}
               content={excerpt!}
             />
           </Grid>
@@ -59,6 +56,6 @@ const PostsView = ({ posts, classes }: IPostsViewProps) => (
       return null
     })}
   </Grid>
-)
+))
 
-export default withStyles(styles)(PostsView)
+export default PostsView

@@ -7,27 +7,18 @@ import {
   LastPage,
   MoreHoriz
 } from 'material-ui-icons'
-import {
-  StyleRules,
-  WithStyles,
-  StyledComponentProps,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import { navigateTo } from 'gatsby-link'
 import { uniq } from 'lodash'
-
+import { StyledComponent } from 'utils/styledProps'
 import PaginationButton from './PaginationButton'
-
-import returnType from '../../../../utils/returnType'
 import getPageID from '../../getPageID';
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    justifyContent: 'center' as 'center',
+    alignItems: 'flex-end' as 'flex-end',
     padding: '20px 0'
   },
 
@@ -46,13 +37,11 @@ const styles = (theme: Theme): StyleRules => ({
   more: {
     color: theme.palette.primary.main
   }
-})
+}))
 
 const MORE = 'more'
 
-const stylesType = returnType(styles)
-
-interface IProps extends StyledComponentProps<keyof typeof stylesType> {
+interface IProps {
   firstPage: string
   lastPage: string
   nextPage: string | null
@@ -60,7 +49,8 @@ interface IProps extends StyledComponentProps<keyof typeof stylesType> {
   actualPage: string
 }
 
-class Pagination extends React.Component<IProps & WithStyles> {
+@injectStyles
+class Pagination extends React.Component<IProps & StyledComponent> {
   navigateToPreviousPage = () => {
     navigateTo(this.props.previousPage!)
   }
@@ -142,4 +132,4 @@ class Pagination extends React.Component<IProps & WithStyles> {
   }
 }
 
-export default withStyles(styles)(Pagination)
+export default Pagination

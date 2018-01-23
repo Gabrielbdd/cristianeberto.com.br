@@ -1,22 +1,13 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
-import {
-  StyleRules,
-  WithStyles,
-  StyledComponentProps,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
-
+import { withStyles } from 'material-ui/styles'
 import getPageID from '../../getPageID'
-import returnType from '../../../../utils/returnType'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center' as 'center',
+    alignItems: 'center' as 'center',
     width: '40px',
     height: '40px',
     margin: '0 7px',
@@ -37,17 +28,15 @@ const styles = (theme: Theme): StyleRules => ({
     color: 'white',
     backgroundColor: theme.palette.primary.main
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IProps extends StyledComponentProps<keyof typeof stylesType> {
+interface IProps {
   active?: boolean
   path: string | undefined
   onClick?: () => any
 }
 
-const PaginationButton = (props: IProps) => {
+const PaginationButton = injectStyles<IProps>(props => {
   const paginationButtonClasses = classNames({
     [props.classes.root]: true,
     [props.classes.paginationButtonActive]: props.active
@@ -63,6 +52,6 @@ const PaginationButton = (props: IProps) => {
         </div>
       : null
   )
-}
+})
 
-export default withStyles(styles)(PaginationButton)
+export default PaginationButton

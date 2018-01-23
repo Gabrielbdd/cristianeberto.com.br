@@ -38,6 +38,7 @@ export const pageQuery = graphql`
             title
             updatedDate(formatString: "DD/MM/YYYY")
             image {
+              name
               children {
                 ... on ImageSharp {
                   sizes(maxWidth: 350, maxHeight: 200) {

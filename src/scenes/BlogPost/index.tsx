@@ -2,23 +2,16 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import { Divider } from 'material-ui'
-import {
-  StyleRules,
-  WithStyles,
-  Theme,
-
-  withStyles
-} from 'material-ui/styles'
-
-import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from '../../graphql-types'
+import { withStyles } from 'material-ui/styles'
+import { StyledComponent } from 'utils/styledProps'
+import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from 'graphql-types'
 
 import translateDate from '../../utils/translateDate'
-import returnType from '../../utils/returnType'
 import Disqus from '../../components/Disqus'
 import ReadingProgressBar from './components/ReadingProgressBar'
 import Author from './components/Author'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     padding: '30px 20px',
     color: theme.palette.text.primary,
@@ -62,7 +55,7 @@ const styles = (theme: Theme): StyleRules => ({
   date: {
     padding: '15px 0',
     fontSize: '13px !important',
-    fontStyle: 'italic',
+    fontStyle: 'italic' as 'italic',
     textAlign: 'center'
   },
 
@@ -79,18 +72,17 @@ const styles = (theme: Theme): StyleRules => ({
       paddingRight: 120,
     }
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IProps extends WithStyles<keyof typeof stylesType> {
+interface IProps {
   data: {
     post: MarkdownRemark
     recents: MarkdownRemarkConnection
   }
 }
 
-class BlogPost extends React.Component<IProps> {
+@injectStyles
+class BlogPost extends React.Component<IProps & StyledComponent> {
   render () {
     const { html, frontmatter, fields } = this.props.data.post
     const { classes } = this.props
@@ -125,4 +117,4 @@ class BlogPost extends React.Component<IProps> {
   }
 }
 
-export default withStyles(styles)(BlogPost)
+export default BlogPost

@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { Avatar } from 'material-ui'
-import { withStyles, StyleRules, Theme, StyledComponentProps } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
-import { AuthorJson, ImageSharp } from '../../../graphql-types'
-import returnType from '../../../utils/returnType'
+import { AuthorJson, ImageSharp } from 'graphql-types'
 
-const styles = (theme: Theme): StyleRules => ({
+const injectStyles = withStyles(theme => ({
   root: {
     display: 'flex',
     padding: '15px 0'
@@ -33,23 +32,21 @@ const styles = (theme: Theme): StyleRules => ({
       height: '114px'
     }
   }
-})
+}))
 
-const stylesType = returnType(styles)
-
-interface IProps extends StyledComponentProps<keyof typeof stylesType> {
+interface IProps {
   author: AuthorJson
 }
 
-const Author = ({ author, classes }: IProps) => {
-  const avatar = author.avatar.children[0] as ImageSharp
+const Author = injectStyles<IProps>(({ author, classes }) => {
+  const avatar = author!.avatar!.children![0] as ImageSharp
 
   return (
     <div className={classes.root}>
       <Avatar
         className={classes.avatar}
-        src={avatar.responsiveResolution.src}
-        srcSet={avatar.responsiveResolution.srcSet}
+        src={avatar.responsiveResolution!.src!}
+        srcSet={avatar.responsiveResolution!.srcSet!}
       />
       <div>
         <p className={classes.id}>{author.id}</p>
@@ -57,6 +54,6 @@ const Author = ({ author, classes }: IProps) => {
       </div>
     </div>
   )
-}
+})
 
-export default withStyles(styles)(Author)
+export default Author

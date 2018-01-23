@@ -9,23 +9,17 @@ import {
   CardActions,
   CardContent,
   Popover,
-  Divider
-} from 'material-ui'
-import {
-  StyleRules,
-  StyledComponentProps,
-  WithStyles,
-
+  Divider,
   withStyles
-} from 'material-ui/styles'
+} from 'material-ui'
 import { Share } from 'material-ui-icons'
-
 import SocialShareList, { SocialMedia } from './SocialShareList'
-import { ImageSharpSizes } from '../../../../graphql-types'
+import { StyledComponent } from 'utils/styledProps'
+import { ImageSharpSizes } from 'graphql-types'
 
 const BASE_URL = 'https://cristianeberto.com.br'
 
-const styles: StyleRules = {
+const injectStyles = withStyles({
   root: {
     maxWidth: 350,
     margin: '0 auto'
@@ -38,17 +32,18 @@ const styles: StyleRules = {
   actions: {
     justifyContent: 'space-between'
   }
-}
+})
 
-interface IPostProps extends StyledComponentProps {
+interface IPostProps {
   title: string
   slug: string
   content: string
   sizes: ImageSharpSizes
+  alt: string
 }
 
-
-class Post extends React.Component<IPostProps & WithStyles> {
+@injectStyles
+class Post extends React.Component<IPostProps & StyledComponent> {
   state = {
     anchorEl: undefined as undefined | HTMLElement,
     popoverHover: false
@@ -63,7 +58,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
   }
 
   render () {
-    const { title, slug, content, classes, sizes } = this.props
+    const { title, slug, content, classes, sizes, alt } = this.props
     const socialMedias: [SocialMedia] = [
       {
         name: 'Facebook',
@@ -87,7 +82,7 @@ class Post extends React.Component<IPostProps & WithStyles> {
 
     return (
       <Card className={classes.root}>
-        <Img sizes={sizes} />
+        <Img sizes={sizes} alt={alt} />
         <CardContent>
           <Typography type="headline" component="h2" gutterBottom>
             {title}
@@ -127,4 +122,4 @@ class Post extends React.Component<IPostProps & WithStyles> {
   }
 }
 
-export default withStyles(styles)(Post)
+export default Post
