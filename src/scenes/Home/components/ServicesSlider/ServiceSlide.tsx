@@ -11,6 +11,7 @@ export type IServiceSlide = {
   image: ImageSharp
   name: string
   description: string
+  alt: string
 }
 
 interface IServiceSlideProps extends IServiceSlide {}
@@ -74,13 +75,17 @@ const injectStyles = withStyles(theme => ({
 @injectStyles
 class ServiceSlide extends React.Component<IServiceSlideProps & StyledComponent> {
   render () {
-    const { image, name, description, classes } = this.props
+    const { image, name, description, classes, alt } = this.props
   
     return (
       <div className={classes.root}>
         <Link to={`/serviços#${name.toLocaleLowerCase()}`}>
           <figure className="taint">
-            <Img resolutions={image.resolutions} className="image" />
+            <Img
+              resolutions={image.resolutions}
+              className="image"
+              alt={alt}
+            />
           </figure>
         </Link>
   

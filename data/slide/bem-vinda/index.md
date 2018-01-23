@@ -1,6 +1,6 @@
 ---
 title: "Bem vinda"
-image: "welcome.jpg"
+image: "mulher-deitada.jpg"
 position: "LB"
 order: 0
 ---

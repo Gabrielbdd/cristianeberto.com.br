@@ -70,12 +70,13 @@ class ServicesSlide extends React.Component<IServicesSlidesProps & StyledCompone
             }
           ]}
         >
-          {slides.map(({ image, name, description }, index) => (
+          {slides.map(({ image, name, description, alt }, index) => (
             <div key={name} onDragStart={e => e.preventDefault()}>
               <ServiceSlide
                 image={image}
                 name={name}
                 description={description}
+                alt={alt}
               />
             </div>
           ))}

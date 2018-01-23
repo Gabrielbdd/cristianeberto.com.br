@@ -3,13 +3,17 @@ import Slider from 'react-slick'
 import { Grid, Button, ButtonBase, Divider, Paper, withStyles } from 'material-ui'
 import Img from 'gatsby-image'
 import { navigateTo } from 'gatsby-link'
-
-import { MarkdownRemarkConnection, ImageSharp, ImageSharpConnection, MarkdownRemark } from 'graphql-types'
-
+import {
+  MarkdownRemarkConnection,
+  ImageSharp,
+  ImageSharpConnection,
+  MarkdownRemark,
+} from 'graphql-types'
 import Title from '../../components/Title'
 import MainSlider from './components/MainSlider'
 import ServicesSlider from './components/ServicesSlider'
 import { StyledComponent } from 'utils/styledProps'
+import normalizeAlt from '../../utils/normalizeAlt'
 
 const injectStyles = withStyles(theme => ({
   root: {
@@ -86,7 +90,8 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
         title: title!,
         html: html!,
         position: position!,
-        order: order!
+        order: order!,
+        alt: normalizeAlt(image!.name!),
       })
 
       return arr
@@ -94,9 +99,10 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
 
     const servicesCategories = data.servicesCategories.edges!.reduce((acc, { node }) => {
       const { frontmatter } = node!
-      const image = frontmatter!.image!.children![0] as ImageSharp
+      const imageParent = frontmatter!.image!
+      const image       = imageParent.children![0] as ImageSharp
 
-      acc.push(Object.assign({}, frontmatter, { image }))
+      acc.push({ ...frontmatter, image, alt: normalizeAlt(imageParent.name!) })
 
       return acc
     }, [])

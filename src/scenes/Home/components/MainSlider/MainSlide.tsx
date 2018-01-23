@@ -13,6 +13,7 @@ export type IMainSlide = {
   html: string
   position: string
   order: number
+  alt: string
 }
 
 const injectStyles = withStyles(theme => ({
@@ -40,9 +41,9 @@ const injectStyles = withStyles(theme => ({
 interface IMainSlideProps extends IMainSlide {}
 
 const Slide: React.SFC<IMainSlideProps & StyledComponent> = 
-({ classes, image: { sizes }, title, html, position }) => (
+({ classes, image: { sizes }, title, html, position, alt }) => (
   <div className={classes.root} onDragStart={e => e.preventDefault()} >
-    <Img sizes={sizes} className="image" />
+    <Img sizes={sizes} className="image" alt={alt} />
 
     <MainSlideText
       content={{

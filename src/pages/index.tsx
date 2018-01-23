@@ -15,6 +15,7 @@ export const pageQuery = graphql`
             position
             title
             image {
+              name
               children {
                 ... on ImageSharp {
                   sizes(maxWidth: 864, maxHeight: 400) {
@@ -36,11 +37,9 @@ export const pageQuery = graphql`
             name
             description
             image {
+              name
               children {
                 ... on ImageSharp {
-                  # resize(width: 200, height: 200) {
-                  #   src
-                  # }
                   resolutions(width: 200, height: 200) {
                     ...GatsbyImageSharpResolutions
                   }

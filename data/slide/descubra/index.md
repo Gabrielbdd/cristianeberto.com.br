@@ -1,6 +1,6 @@
 ---
 title: "Descubra"
-image: "discover.jpg"
+image: "hambiente-relaxante.jpg"
 position: "RM"
 order: 2
 ---

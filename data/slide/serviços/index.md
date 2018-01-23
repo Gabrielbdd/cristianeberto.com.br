@@ -1,6 +1,6 @@
 ---
 title: "Serviços"
-image: "services.jpg"
+image: "mulher-deitada.jpg"
 position: "LT"
 order: 1
 ---
