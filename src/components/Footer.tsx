@@ -136,7 +136,7 @@ class Footer extends React.Component<StyledComponent> {
           component="nav"
         >
           <Link to="/" className="logo">
-            <img src={cristianeBertoLogo} alt="Cristiane Berto - Logo"/>
+            <img src={cristianeBertoLogo} alt="Cristiane Berto logo"/>
           </Link>
           <div className="content">
             <p className="title">Navegar</p>
@@ -164,7 +164,7 @@ class Footer extends React.Component<StyledComponent> {
             <br/>
             <br/>
             <br/>
-            <a href="https://goo.gl/maps/7d91oc9DsXk" target="_blank">
+            <a href="https://goo.gl/maps/7d91oc9DsXk" target="_blank" rel="noopener">
               <span>Centro - BH</span>
               <br/>
               <span>Av. Amazonas, 687 | sala 405</span>
@@ -182,12 +182,12 @@ class Footer extends React.Component<StyledComponent> {
             <p className="title">Continue conosco</p>
             <ul className="social__list">
               <li>
-                <a href="https://facebook.com/cristianebertooficial" target="_blank">
+                <a href="https://facebook.com/cristianebertooficial" target="_blank" rel="noopener">
                   <FaFacebook className="icon facebook" />
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/cristianebertooficial" target="_blank">
+                <a href="https://instagram.com/cristianebertooficial" target="_blank" rel="noopener">
                   <FaInstagram className="icon instagram" />
                 </a>
               </li>

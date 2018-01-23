@@ -39,7 +39,6 @@ const tabPaths = [
 @injectStyles
 class Header extends React.Component<IProps & StyledComponent> {
   handletabChange = (e: any, tabIndex: number) => {
-    // this.props.history.push(tabPaths[tabIndex])
     navigateTo(tabPaths[tabIndex])
   }
 
@@ -54,7 +53,7 @@ class Header extends React.Component<IProps & StyledComponent> {
     
     return  (
       <header className={this.props.classes.root}>
-        <img src={cristianeBertoLogo} className="logo" />
+        <img src={cristianeBertoLogo} className="logo" alt="Cristiane Berto logo" />
         <Tabs
           value={activeTab}
           onChange={this.handletabChange}
