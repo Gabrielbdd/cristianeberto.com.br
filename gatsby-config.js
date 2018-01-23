@@ -19,6 +19,7 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          `gatsby-remark-emoji`,
           {
             resolve:'gatsby-remark-images',
             options: {
@@ -59,6 +60,8 @@ module.exports = {
         ]
       }
     },
-    'gatsby-plugin-offline',
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-react-helmet`,
   ]
 }
