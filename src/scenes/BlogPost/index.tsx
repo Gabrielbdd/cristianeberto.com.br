@@ -90,7 +90,7 @@ class BlogPost extends React.Component<IProps & StyledComponent> {
     return (
       <article className={classes.root}>
         <Helmet>
-          <title>{`${frontmatter.title} | Blog`}</title>
+          <title>{`${frontmatter!.title} | Blog`}</title>
         </Helmet>
 
         <ReadingProgressBar>
@@ -102,7 +102,7 @@ class BlogPost extends React.Component<IProps & StyledComponent> {
 
         <Divider />
 
-        <Author author={frontmatter.author} />
+        <Author author={frontmatter!.author!} />
 
         <Divider />
 

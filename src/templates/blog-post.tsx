@@ -42,6 +42,7 @@ export const pageQuery = graphql`
         }
       }
     }
+    
     recents: allMarkdownRemark(
       filter: {
         fields: { slug: { ne: $slug } }
