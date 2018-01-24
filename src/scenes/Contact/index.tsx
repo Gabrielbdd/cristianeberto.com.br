@@ -5,7 +5,6 @@ import { Grid, Paper, withStyles } from 'material-ui'
 import Title from '../../components/Title'
 import Container from '../../components/Container'
 import { StyledComponent } from 'utils/styledProps'
-import * as FreshChat from '../../freshChat'
 
 interface IProps {}
 
@@ -55,7 +54,7 @@ const Contact = ({ classes }: IProps & StyledComponent) => {
           </ul>
           <br/>
           <p>
-            Você pode nos mandar uma mensagem a qualquer momento <a onClick={FreshChat.open} className="outstanding">clicando aqui</a>
+            Você pode nos mandar uma mensagem a qualquer momento <a className="outstanding">clicando aqui</a>
           </p>
         </Paper>
       </Grid>

@@ -46,10 +46,6 @@ interface IProps {
 @withRoot
 @injectStyles
 class DefaultLayout extends React.Component<IProps & StyledComponent> {
-  componentDidMount () {
-    freshChat.load()
-  }
-
   render () {
     const { classes, history, location } = this.props
 
