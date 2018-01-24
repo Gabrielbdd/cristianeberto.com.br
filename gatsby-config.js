@@ -8,6 +8,7 @@ module.exports = {
     'MarkdownRemark.frontmatter.author': `AuthorJson`
   },
   plugins: [
+    `gatsby-plugin-react-next`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
