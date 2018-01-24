@@ -31,6 +31,7 @@
     "gatsby-link": "latest",
     "gatsby-plugin-canonical-urls": "^1.0.11",
     "gatsby-plugin-manifest": "latest",
+    "gatsby-plugin-netlify": "^1.0.15",
     "gatsby-plugin-offline": "latest",
     "gatsby-plugin-react-helmet": "^2.0.3",
     "gatsby-plugin-segment": "^1.0.2",

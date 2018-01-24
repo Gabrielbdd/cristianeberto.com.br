@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Cristiane Berto',
-    disqusShortName: 'cristiane-berto'
+    disqusShortName: 'cristiane-berto',
+    siteUrl: `https://www.cristianeberto.com.br`
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': `AuthorJson`
@@ -72,6 +73,7 @@ module.exports = {
         writeKey: process.env.SEGMENT_WRITE_KEY
       }
     },
+    `gatsby-plugin-netlify`,
     `cp-nprogress`
   ]
 }
