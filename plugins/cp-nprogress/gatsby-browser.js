@@ -1,3 +1,4 @@
+import * as React from 'react'
 import * as NProgress from 'nprogress'
 
 const autoIncrement = (() => {
@@ -43,8 +44,29 @@ export const onInitialClientRender = () => {
   }
 }
 
-export const onRouteUpdate = () => {
-  if (NProgress.isStarted()) {
-    NProgress.done()
+class ReplaceComponentRenderer extends React.Component {
+  constructor (props) {
+    super(props)
   }
+
+  componentDidUpdate () {
+    if (NProgress.isStarted()) {
+      setTimeout(() => { NProgress.done() }, 300)
+    }
+  }
+  
+  render () {
+    return React.createElement(this.props.pageResources.component, {
+      ...this.props,
+      ...this.props.pageResources.json,
+    })
+  }
+}
+
+export const replaceComponentRenderer = ({ props, loader }) => {
+  if (props.layout) {
+    return undefined
+  }
+
+  return React.createElement(ReplaceComponentRenderer, { ...props, loader })
 }
