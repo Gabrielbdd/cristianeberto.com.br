@@ -33,6 +33,7 @@ const PostsView = injectStyles<IPostsViewProps>(({ posts, classes }) => (
     {posts.map(({ node }) => {
       const { frontmatter, timeToRead, fields: { slug }, excerpt } = node!
       const cover = frontmatter!.image!.children![0] as ImageSharp
+      const alt = frontmatter!.image!.name!
   
       if (cover.sizes) {
         return (
@@ -46,7 +47,7 @@ const PostsView = injectStyles<IPostsViewProps>(({ posts, classes }) => (
               title={frontmatter!.title!}
               slug={slug!}
               sizes={cover.sizes}
-              alt={normalizeAlt(frontmatter!.image!.name!)}
+              alt={alt ? normalizeAlt(alt) : ''}
               content={excerpt!}
             />
           </Grid>
