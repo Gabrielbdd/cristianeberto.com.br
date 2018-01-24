@@ -69,8 +69,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-segment',
       options: {
-        writeKey: process.env.SEGMENT_WRITE_KEY || ''
+        writeKey: process.env.SEGMENT_WRITE_KEY
       }
-    }
+    },
+    `cp-nprogress`
   ]
 }
