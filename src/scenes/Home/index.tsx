@@ -10,6 +10,7 @@ import {
   MarkdownRemark,
 } from 'graphql-types'
 import Title from '../../components/Title'
+import HomeSEO from './components/SEO'
 import MainSlider from './components/MainSlider'
 import ServicesSlider from './components/ServicesSlider'
 import { StyledComponent } from 'utils/styledProps'
@@ -111,6 +112,8 @@ class Home extends React.Component<IHomeProps & StyledComponent> {
 
     return (
       <Grid container className={classes.root}>
+        <HomeSEO />
+
         <Grid item xs={12}>
           <Paper className="slider">
             <MainSlider slides={slides} />

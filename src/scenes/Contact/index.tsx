@@ -4,6 +4,7 @@ import { Grid, Paper, withStyles } from 'material-ui'
 
 import Title from '../../components/Title'
 import Container from '../../components/Container'
+import SEO from './SEO'
 import { StyledComponent } from 'utils/styledProps'
 
 interface IProps {}
@@ -35,9 +36,7 @@ const injectStyles = withStyles(theme => ({
 const Contact = ({ classes }: IProps & StyledComponent) => {
   return (
     <Grid container className={classes.root}>
-      <Helmet>
-        <title>Contato</title>
-      </Helmet>
+      <SEO />
 
       <Grid item xs={12}>
         <Paper className="send-a-message">

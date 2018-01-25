@@ -5,6 +5,9 @@ export default BlogPost
 export const pageQuery = graphql`
   query TemplateBlogPost($slug: String!) {
     post: markdownRemark(fields: { slug:  { eq: $slug } }) {
+      wordCount {
+    	  words
+    	}
       html
       excerpt
       timeToRead

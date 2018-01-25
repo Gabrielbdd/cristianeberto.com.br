@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import { Divider } from 'material-ui'
 import { withStyles } from 'material-ui/styles'
@@ -8,6 +7,7 @@ import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from 'graphql-ty
 
 import translateDate from '../../utils/translateDate'
 import Disqus from '../../components/Disqus'
+import PostSEO from './components/SEO'
 import ReadingProgressBar from './components/ReadingProgressBar'
 import Author from './components/Author'
 
@@ -82,16 +82,33 @@ interface IProps {
 }
 
 @injectStyles
-class BlogPost extends React.Component<IProps & StyledComponent> {
+class BlogPost extends React.PureComponent<IProps & StyledComponent> {
   render () {
-    const { html, frontmatter, fields } = this.props.data.post
+    const { html, frontmatter, fields, excerpt, wordCount } = this.props.data.post
     const { classes } = this.props
-  
+
+    const title = `${frontmatter!.title} | Blog`
+    const image = frontmatter!.image!.children![0].responsiveResolution.src as string
+    const author = frontmatter!.author!.id!
+
     return (
       <article className={classes.root}>
-        <Helmet>
-          <title>{`${frontmatter!.title} | Blog`}</title>
-        </Helmet>
+        <PostSEO
+          title={title}
+          headline={title}
+          image={image}
+          author={author}
+          date={{
+            created: frontmatter!.createdDate!,
+            published: frontmatter!.createdDate!,
+            modified: frontmatter!.updatedDate!,
+          }}
+          description={excerpt!}
+          wordcount={wordCount!.words!}
+          body={html!}
+          slug={fields!.slug!}
+          tags={frontmatter!.tags!}
+        />
 
         <ReadingProgressBar>
           <h1 className={classes.title}>{frontmatter.title}</h1>

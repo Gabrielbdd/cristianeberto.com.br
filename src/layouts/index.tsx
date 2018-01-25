@@ -55,8 +55,6 @@ class DefaultLayout extends React.Component<IProps & StyledComponent> {
           defaultTitle="Cristiane Berto"
           titleTemplate="%s | Cristiane Berto"
         >
-          <meta name="og:type" content="website" />
-          <meta name="og:site_name" content="Cristiane Berto" />
           <html lang="pt-br" />
         </Helmet>
 
