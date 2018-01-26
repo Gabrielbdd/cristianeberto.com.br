@@ -21,7 +21,7 @@ const BASE_URL = 'https://cristianeberto.com.br'
 
 const injectStyles = withStyles({
   root: {
-    maxWidth: 350,
+    maxWidth: 360,
     margin: '0 auto'
   },
 

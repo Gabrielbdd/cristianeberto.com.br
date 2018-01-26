@@ -36,54 +36,9 @@ export const pageQuery = graphql`
         image {
           children {
             ... on ImageSharp {
-              responsiveResolution(width: 900, height: 300, quality: 100) {
+              responsiveResolution(width: 1200, height: 630, quality: 100) {
                 src
                 srcSet
-              }
-            }
-          }
-        }
-      }
-    }
-    
-    recents: allMarkdownRemark(
-      filter: {
-        fields: { slug: { ne: $slug } }
-        frontmatter: { draft: { ne: true } },
-        fileAbsolutePath: { regex: "/blog/" },
-      },
-      sort: { order: DESC, fields: [ frontmatter___updatedDate ] },
-      limit: 4
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          timeToRead
-          frontmatter {
-            title
-            image {
-              children {
-                ... on ImageSharp {
-                  responsiveResolution(width: 300, height: 100) {
-                    src
-                    srcSet
-                  }
-                }
-              }
-            }
-            author {
-              id
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    responsiveResolution(width: 36, height: 36) {
-                      src
-                      srcSet
-                    }
-                  }
-                }
               }
             }
           }

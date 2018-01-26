@@ -87,9 +87,10 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
     const { html, frontmatter, fields, excerpt, wordCount } = this.props.data.post
     const { classes } = this.props
 
-    const title = `${frontmatter!.title} | Blog`
-    const image = frontmatter!.image!.children![0].responsiveResolution.src as string
+    const title  = frontmatter!.title!
+    const image  = frontmatter!.image!.children![0].responsiveResolution.src as string
     const author = frontmatter!.author!.id!
+    const slug = fields!.slug!
 
     return (
       <article className={classes.root}>
@@ -105,8 +106,7 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
           }}
           description={excerpt!}
           wordcount={wordCount!.words!}
-          body={html!}
-          slug={fields!.slug!}
+          slug={slug}
           tags={frontmatter!.tags!}
         />
 
@@ -125,9 +125,9 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
 
         <Disqus
           shortname="cristiane-berto"
-          identifier={frontmatter.title}
-          title={frontmatter.title}
-          url={`http://cristianeberto.com.br${fields.slug}`}
+          identifier={title}
+          title={title}
+          url={`http://cristianeberto.com.br${slug}`}
         />
       </article>
     )

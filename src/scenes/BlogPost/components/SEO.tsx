@@ -12,7 +12,6 @@ interface IProps {
     modified: string
   }
   description: string
-  body: string
   wordcount: number
   slug: string
   tags: string[]
@@ -25,7 +24,6 @@ const HomeSEO: React.SFC<IProps> = ({
   wordcount,
   date,
   description,
-  body,
   author,
   slug,
   tags,
@@ -33,7 +31,7 @@ const HomeSEO: React.SFC<IProps> = ({
   const url = `https://cristianeberto.com.br`
   
   return (
-    <Helmet title={title}>
+    <Helmet title={title + ' | Blog'}>
       <html prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" />
 
       <script type="application/ld+json">{`
@@ -70,6 +68,8 @@ const HomeSEO: React.SFC<IProps> = ({
       <meta property="og:url"    content={url + slug} /> 
       <meta property="og:title"  content={title} /> 
       <meta property="og:image"  content={url + image} /> 
+      <meta property="og:image:width"  content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:description" content={description} />
       <meta property="article:author" content={author} />
       <meta property="article:tag"    content={tags.join(' ')} />
