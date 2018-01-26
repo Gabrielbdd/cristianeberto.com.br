@@ -26,6 +26,7 @@ const HomeSEO: React.SFC<IProps> = () => {
         }
       `}</script>
       
+      <meta name="google-site-verification" content="o1zIkQyMExU4Bgxken7ZFAfSkv-d7OzL5C5YHE82cMY" />
       <meta property="og:type"        content="website" />
       <meta property="og:site_name"   content={site.name} />
       <meta property="og:title"       content="Cristiane Berto - Clínica da Pele" />
