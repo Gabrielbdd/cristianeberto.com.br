@@ -4,18 +4,18 @@ export default function translateDate (date: string) {
   }
 
   const mounths: IMounths = {
-    January: 'Janeiro',
-    February: 'Fevereiro',
-    April: 'Abril',
-    March: 'Março',
+    Jan: 'Janeiro',
+    Feb: 'Fevereiro',
+    Mar: 'Março',
+    Apr: 'Abril',
     May: 'Maio',
-    June: 'Junho',
-    July: 'Julho',
-    Agust: 'Agosto',
-    Septeber: 'Setembro',
-    October: 'Outubro',
-    November: 'Novembro',
-    December: 'Dezembro'
+    Jun: 'Junho',
+    Jul: 'Julho',
+    Aug: 'Agosto',
+    Sep: 'Setembro',
+    Oct: 'Outubro',
+    Nov: 'Novembro',
+    Dec: 'Dezembro'
   }
 
   let result

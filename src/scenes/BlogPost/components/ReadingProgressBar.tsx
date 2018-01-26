@@ -61,7 +61,7 @@ class ReadingProgressBar extends React.Component<IProps & WithStyles, IState> {
     if (this.$container) {
       const { top, height } = this.$container.getBoundingClientRect()
 
-      if ((height + 50 >= window.pageYOffset) && (top + 45 <= window.pageYOffset)) {
+      if ((height + 50 >= window.pageYOffset) && (top + 85 <= window.pageYOffset)) {
         visibility = 'visible'
       }
     }

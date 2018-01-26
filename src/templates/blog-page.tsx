@@ -40,7 +40,7 @@ export const pageQuery = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  sizes(maxWidth: 360, maxHeight: 200) {
+                  sizes(maxWidth: 400, maxHeight: 300) {
                     base64
                     tracedSVG
                     aspectRatio

@@ -15,7 +15,7 @@ const injectStyles = withStyles(theme => ({
 
   [theme.breakpoints.up('md')]: {
     root: {
-      padding: '40px 110px'
+      padding: '10px 110px'
     }
   }
 }))

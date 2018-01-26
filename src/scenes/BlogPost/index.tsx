@@ -112,9 +112,9 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
 
         <ReadingProgressBar>
           <h1 className={classes.title}>{frontmatter.title}</h1>
-          <p className={classes.date}>Atualizado em {translateDate(frontmatter.updatedDate)}</p>
+          <p className={classes.date}>Atualizado em {translateDate(frontmatter!.updatedDate!)}</p>
           <section dangerouslySetInnerHTML={{ __html: html as string }} />
-          <p className={classes.date}>Publicado em {translateDate(frontmatter.createdDate)}</p>
+          <p className={classes.date}>Publicado em {translateDate(frontmatter!.createdDate!)}</p>
         </ReadingProgressBar>
 
         <Divider />

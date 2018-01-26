@@ -1,7 +1,7 @@
 import * as React from 'react'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import { withStyles } from 'material-ui/styles'
-import Facebook     = require('react-icons/lib/fa/facebook')
+import FaFacebook   = require('react-icons/lib/fa/facebook')
 import FaTwitter    = require('react-icons/lib/fa/twitter')
 import FaGooglePlus = require('react-icons/lib/fa/google-plus')
 import FaWhatsapp   = require('react-icons/lib/fa/whatsapp')
