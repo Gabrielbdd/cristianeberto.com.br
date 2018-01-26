@@ -3,8 +3,6 @@ import { Tabs, Tab, withStyles } from 'material-ui'
 import { navigateTo } from 'gatsby-link'
 import { StyledComponent } from 'utils/styledProps'
 
-import cristianeBertoLogo = require('../assets/cristiane-berto.png')
-
 const injectStyles = withStyles(theme => ({
   root: {
     padding: '0 8px',
@@ -53,7 +51,7 @@ class Header extends React.Component<IProps & StyledComponent> {
     
     return  (
       <header className={this.props.classes.root}>
-        <img src={cristianeBertoLogo} className="logo" alt="Cristiane Berto logo" />
+        <img src="/logo.jpg" className="logo" alt="Cristiane Berto logo" />
         <Tabs
           value={activeTab}
           onChange={this.handletabChange}

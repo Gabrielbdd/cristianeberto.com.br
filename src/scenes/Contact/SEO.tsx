@@ -14,7 +14,7 @@ const ContactSEO: React.SFC<IProps> = () => {
           "@type": "Organization",
           "name": "Cristiane Berto - Clínica da Pele",
           "url": "${url}",
-          "logo": "${url}/logo.png",
+          "logo": "${url}/logo.jpg",
           "foundingDate": "2013",
           "founders": [
             {

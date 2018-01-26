@@ -48,7 +48,7 @@ const HomeSEO: React.SFC<IProps> = ({
             "name": "Cristiane Berto - Clínica da Pele",
             "logo": {
               "@type": "ImageObject",
-              "url": "${url}/logo.png"
+              "url": "${url}/logo.jpg"
             }
           },
           "url": "${url}",

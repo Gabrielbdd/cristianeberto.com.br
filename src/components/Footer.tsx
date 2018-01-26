@@ -6,8 +6,6 @@ import FaInstagram = require('react-icons/lib/fa/instagram')
 import { Grid, Paper, withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
 
-import cristianeBertoLogo = require('../assets/cristiane-berto.png')
-
 const injectStyles = withStyles(theme => ({
   root: {
     maxWidth: theme.breakpoints.values.sm,
@@ -136,7 +134,7 @@ class Footer extends React.Component<StyledComponent> {
           component="nav"
         >
           <Link to="/" className="logo">
-            <img src={cristianeBertoLogo} alt="Cristiane Berto logo"/>
+            <img src="/logo.jpg" alt="Cristiane Berto logo"/>
           </Link>
           <div className="content">
             <p className="title">Navegar</p>
