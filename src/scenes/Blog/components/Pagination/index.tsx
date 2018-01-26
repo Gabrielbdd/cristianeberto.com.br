@@ -1,13 +1,10 @@
 import * as React from 'react'
-import { Button } from 'material-ui'
-import {
-  ChevronLeft,
-  ChevronRight,
-  FirstPage,
-  LastPage,
-  MoreHoriz
-} from 'material-ui-icons'
-import { withStyles } from 'material-ui/styles'
+import { Button, withStyles } from 'material-ui'
+import ChevronLeft  from 'material-ui-icons/ChevronLeft'
+import ChevronRight from 'material-ui-icons/ChevronRight'
+import FirstPage    from 'material-ui-icons/FirstPage'
+import LastPage     from 'material-ui-icons/LastPage'
+import MoreHoriz    from 'material-ui-icons/MoreHoriz'
 import { navigateTo } from 'gatsby-link'
 import { uniq } from 'lodash'
 import { StyledComponent } from 'utils/styledProps'

@@ -1,8 +1,7 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { Tabs, Tab, withStyles } from 'material-ui'
+import { withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
-import * as freshChat from '../lib/freshChat'
 import withRoot from '../withRoot'
 
 import './index.css'

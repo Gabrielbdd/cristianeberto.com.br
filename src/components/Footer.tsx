@@ -1,9 +1,9 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 import Link from 'gatsby-link'
-import { FaFacebook, FaInstagram } from 'react-icons/lib/fa'
-import { Grid, Paper } from 'material-ui'
-import { withStyles } from 'material-ui/styles'
+import FaFacebook  = require('react-icons/lib/fa/facebook')
+import FaInstagram = require('react-icons/lib/fa/instagram')
+import { Grid, Paper, withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
 
 import cristianeBertoLogo = require('../assets/cristiane-berto.png')

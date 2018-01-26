@@ -12,7 +12,7 @@ import {
   Divider,
   withStyles
 } from 'material-ui'
-import { Share } from 'material-ui-icons'
+import Share from 'material-ui-icons/Share'
 import SocialShareList, { SocialMedia } from './SocialShareList'
 import { StyledComponent } from 'utils/styledProps'
 import { ImageSharpSizes } from 'graphql-types'
