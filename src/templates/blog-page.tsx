@@ -35,9 +35,11 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
+            tags
             title
             updatedDate(formatString: "DD/MM/YYYY")
             image {
+              name
               children {
                 ... on ImageSharp {
                   sizes(maxWidth: 400, maxHeight: 300) {

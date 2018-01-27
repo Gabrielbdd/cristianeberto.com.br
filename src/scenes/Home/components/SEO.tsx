@@ -18,10 +18,6 @@ const HomeSEO: React.SFC<IProps> = () => {
           "@type": "WebSite", 
           "url": "${site.url}", 
           "name": "${site.name}",
-          "author": {
-            "@type": "Person",
-            "name": "${site.name}"
-          },
           "description": "${site.description}"
         }
       `}</script>
@@ -33,6 +29,7 @@ const HomeSEO: React.SFC<IProps> = () => {
       <meta property="og:description" content={site.description} />
       <meta property="og:url"         content={site.url} />
       <meta property="og:image"       content={`${site.url}/og_home-image.png`} />
+      <meta property="og:locale"      content="pt-br" />
     </Helmet>
   )
 }

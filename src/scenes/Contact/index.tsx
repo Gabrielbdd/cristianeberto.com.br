@@ -33,6 +33,18 @@ const injectStyles = withStyles(theme => ({
   },
 }))
 
+function openChat () {
+  function listenDriftReady () {
+    drift.on('ready', api => {
+      api.sidebar.open()
+    })
+  }
+  
+  typeof drift === 'function'
+    ? listenDriftReady()
+    : analytics.ready(listenDriftReady)
+}
+
 const Contact = ({ classes }: IProps & StyledComponent) => {
   return (
     <Grid container className={classes.root}>
@@ -53,7 +65,7 @@ const Contact = ({ classes }: IProps & StyledComponent) => {
           </ul>
           <br/>
           <p>
-            Você pode nos mandar uma mensagem a qualquer momento <a className="outstanding">clicando aqui</a>
+            Você pode nos mandar uma mensagem a qualquer momento <a className="outstanding" onClick={openChat}>clicando aqui</a>
           </p>
         </Paper>
       </Grid>

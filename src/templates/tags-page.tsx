@@ -27,33 +27,30 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
-          excerpt
+          excerpt(pruneLength: 250)
           timeToRead
           fields {
             slug
           }
           frontmatter {
+            tags
             title
-            updatedDate(formatString: "DD MMMM, YYYY")
+            updatedDate(formatString: "DD/MM/YYYY")
             image {
+              name
               children {
                 ... on ImageSharp {
-                  responsiveResolution(width: 700, height: 100) {
+                  sizes(maxWidth: 400, maxHeight: 300) {
+                    base64
+                    tracedSVG
+                    aspectRatio
                     src
                     srcSet
-                  }
-                }
-              }
-            }
-            author {
-              id
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    responsiveResolution(width: 35, height: 35) {
-                      src
-                      srcSet
-                    }
+                    srcWebp
+                    srcSetWebp
+                    sizes
+                    originalImg
+                    originalName
                   }
                 }
               }

@@ -45,8 +45,9 @@ const ContactSEO: React.SFC<IProps> = () => {
             }
           ],
           "sameAs": [
-            "https://www.facebook.com/cristianebertooficial/",
-            "https://plus.google.com/110177124112976735248"
+            "http://www.instagram.com/cristianebertooficial",
+            "http://www.facebook.com/cristianebertooficial",
+            "http://plus.google.com/110177124112976735248"
           ]
         }
       `}</script>
