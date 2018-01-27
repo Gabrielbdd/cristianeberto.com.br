@@ -35,7 +35,7 @@ const injectStyles = withStyles(theme => ({
         zIndex: 10000,
         opacity: '0.3',
         transition: `background-color .${theme.transitions.duration.standard}s ${theme.transitions.easing.easeIn}`,
-        borderRadius: 180,
+        borderRadius: '50%',
       },
 
       '&:hover:before': {
@@ -44,7 +44,7 @@ const injectStyles = withStyles(theme => ({
     },
 
     '& .image': {
-      borderRadius: 180,
+      borderRadius: '50%',
 
       '& [src*="data:image"]': {
         filter: 'blur(10px)',

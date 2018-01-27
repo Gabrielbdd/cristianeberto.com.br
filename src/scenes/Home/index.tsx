@@ -36,7 +36,7 @@ const injectStyles = withStyles(theme => ({
       '& .cristiane-berto': {
         maxWidth: 150,
         margin: "0 auto",
-        borderRadius: 180,
+        borderRadius: '50%',
       },
 
       '& .ler-mais': {

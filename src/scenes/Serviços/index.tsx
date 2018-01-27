@@ -52,7 +52,7 @@ const injectStyles = withStyles(theme => ({
     width: '200px',
     height: '200px',
     margin: '0 auto',
-    borderRadius: '90px'
+    borderRadius: '50%'
   },
 
   categories__detail__description: {
