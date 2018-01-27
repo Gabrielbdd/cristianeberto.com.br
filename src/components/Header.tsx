@@ -51,7 +51,7 @@ class Header extends React.Component<IProps & StyledComponent> {
     
     return  (
       <header className={this.props.classes.root}>
-        <img src="/logo.jpg" className="logo" alt="Cristiane Berto logo" />
+        <img src="/logo_60x60.png" className="logo" alt="Cristiane Berto logo" />
         <Tabs
           value={activeTab}
           onChange={this.handletabChange}

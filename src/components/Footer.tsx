@@ -134,7 +134,7 @@ class Footer extends React.Component<StyledComponent> {
           component="nav"
         >
           <Link to="/" className="logo">
-            <img src="/logo.jpg" alt="Cristiane Berto logo"/>
+            <img src="/logo_60x60.png" alt="Cristiane Berto logo"/>
           </Link>
           <div className="content">
             <p className="title">Navegar</p>
