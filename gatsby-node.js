@@ -68,6 +68,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
               frontmatter {
                 tags
+                draft
               }
             }
           }
@@ -95,6 +96,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
       // Create tags pages
       posts
+        .filter(post => post.frontmatter.draft === false)
         .reduce((mem, post) =>
           cleanArray(mem.concat(get(post, 'frontmatter.tags')))
         , [])
