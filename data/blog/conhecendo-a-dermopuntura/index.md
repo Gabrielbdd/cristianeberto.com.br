@@ -5,6 +5,7 @@ updatedDate: '2017-05-06'
 author: Cristiane Berto
 tags:
   - dermopuntura
+  - estrias
 image: estrias-na-barriga.jpg
 draft: false
 ---

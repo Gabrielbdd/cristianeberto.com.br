@@ -10,7 +10,8 @@ import {
   CardContent,
   Popover,
   Divider,
-  withStyles
+  Chip,
+  withStyles,
 } from 'material-ui'
 import Share from 'material-ui-icons/Share'
 import SocialShareList, { SocialMedia } from './SocialShareList'
@@ -19,7 +20,7 @@ import { ImageSharpSizes } from 'graphql-types'
 
 const BASE_URL = 'https://cristianeberto.com.br'
 
-const injectStyles = withStyles({
+const injectStyles = withStyles(theme => ({
   root: {
     maxWidth: 360,
     margin: '0 auto'
@@ -30,16 +31,31 @@ const injectStyles = withStyles({
   },
 
   actions: {
-    justifyContent: 'space-between'
+    justifyContent: 'space-between' as 'space-between'
+  },
+
+  tags: {
+    marginTop: 16,
+  },
+
+  tag: {
+    marginRight: theme.spacing.unit / 2,
+
+    '&:last-child': {
+      marginRight: 0,
+    },
   }
-})
+}))
 
 interface IPostProps {
-  title: string
   slug: string
+  title: string
   content: string
-  sizes: ImageSharpSizes
-  alt: string
+  image: {
+    sizes: ImageSharpSizes
+    alt: string
+  }
+  tags: string[]
 }
 
 @injectStyles
@@ -58,7 +74,7 @@ class Post extends React.Component<IPostProps & StyledComponent> {
   }
 
   render () {
-    const { title, slug, content, classes, sizes, alt } = this.props
+    const { title, slug, content, classes, image, tags } = this.props
     const socialMedias: [SocialMedia] = [
       {
         name: 'Facebook',
@@ -82,16 +98,31 @@ class Post extends React.Component<IPostProps & StyledComponent> {
 
     return (
       <Card className={classes.root}>
-        <Img sizes={sizes} alt={alt} />
+        <Img sizes={image.sizes} alt={image.alt} />
+
         <CardContent>
           <Typography type="headline" component="h2" gutterBottom>
             {title}
           </Typography>
+
           <Typography component="p">
             {content}
           </Typography>
+
+          <div className={classes.tags}>
+            {tags.map(tag => 
+              <Chip
+                key={tag}
+                label={tag}
+                className={classes.tag}
+                onClick={() => navigateTo(`/blog/tags/${tag}`)}
+              />
+            )}
+          </div>
         </CardContent>
+
         <Divider light />
+
         <CardActions className={classes.actions}>
           <Button color="accent" onClick={() => navigateTo(slug)}>
             Ler mais

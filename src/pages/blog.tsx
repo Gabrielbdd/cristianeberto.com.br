@@ -35,6 +35,7 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
+            tags
             title
             updatedDate(formatString: "DD/MM/YYYY")
             image {

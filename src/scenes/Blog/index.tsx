@@ -33,7 +33,7 @@ const Blog = (props: IProps) => {
         <title>Blog</title>
       </Helmet>
 
-      <PostsView posts={props.data.posts.edges} />
+      <PostsView posts={props.data.posts.edges!} />
 
       <Pagination
         actualPage={`/blog/page/${actualPage}`}

@@ -46,9 +46,12 @@ const PostsView = injectStyles<IPostsViewProps>(({ posts, classes }) => (
             <Post
               title={frontmatter!.title!}
               slug={slug!}
-              sizes={cover.sizes}
-              alt={alt ? normalizeAlt(alt) : ''}
+              image={{
+                sizes: cover.sizes,
+                alt: alt ? normalizeAlt(alt) : ''
+              }}
               content={excerpt!}
+              tags={frontmatter!.tags!}
             />
           </Grid>
         )
