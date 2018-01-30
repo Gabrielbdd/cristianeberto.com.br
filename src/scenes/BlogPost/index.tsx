@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import { Divider, withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
 import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from 'graphql-types'
+import Img from 'gatsby-image'
 
 import translateDate from '../../utils/translateDate'
 import Disqus from '../../components/Disqus'
@@ -48,7 +49,7 @@ const injectStyles = withStyles(theme => ({
     marginBottom: '20px',
     textAlign: 'center',
     color: theme.palette.primary.main,
-    fontSize: '1.5em',
+    fontSize: 34,
 
     '&::after': {
       content: `''`,
@@ -58,6 +59,14 @@ const injectStyles = withStyles(theme => ({
       display: 'block',
       margin: '20px auto 0'
     }
+  },
+
+  thumbnail: {
+    marginTop: 30,
+
+    '& [src*="data:image"]': {
+      filter: 'blur(5px)',
+    },
   },
 
   date: {
@@ -96,7 +105,7 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
     const { classes } = this.props
 
     const title  = frontmatter!.title!
-    const image  = frontmatter!.image!.children![0].responsiveResolution.src as string
+    const image  = frontmatter!.image!.children![0] as ImageSharp
     const author = frontmatter!.author!.id!
     const slug   = fields!.slug!
 
@@ -105,7 +114,7 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
         <PostSEO
           title={title}
           headline={title}
-          image={image}
+          image={image.sizes!.src!}
           author={author}
           date={{
             created: frontmatter!.createdDate!,
@@ -120,6 +129,7 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
 
         <ReadingProgressBar>
           <h1 className={classes.title}>{frontmatter!.title}</h1>
+          <Img sizes={image!.sizes!} className={classes.thumbnail} />
           <p className={classes.date}>Atualizado em {translateDate(frontmatter!.updatedDate!)}</p>
           <section dangerouslySetInnerHTML={{ __html: html as string }} />
           <p className={classes.date}>Publicado em {translateDate(frontmatter!.createdDate!)}</p>

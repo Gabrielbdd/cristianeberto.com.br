@@ -9,8 +9,8 @@ const injectStyles = withStyles(theme => ({
     display: 'flex',
     padding: '15px 0',
 
-    '& 0': {
-      margin: 0
+    '& p': {
+      margin: '0px !important'
     }
   },
 
