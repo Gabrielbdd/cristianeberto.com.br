@@ -42,6 +42,12 @@ const ContactSEO: React.SFC<IProps> = () => {
               "contactType": "customer support",
               "telephone": "+55 31 99137-0004",
               "email": "ola@cristianeberto.com.br"
+            },
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "telephone": "+55 31 99137-0029",
+              "email": "ola@cristianeberto.com.br"
             }
           ],
           "sameAs": [

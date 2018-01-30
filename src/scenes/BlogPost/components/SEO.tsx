@@ -51,16 +51,19 @@ const HomeSEO: React.SFC<IProps> = ({
               "url": "${url}/logo.jpg"
             }
           },
+          "author": {
+            "@type": "Person",
+            "name": "${author}"
+          },
           "url": "${url}",
           "datePublished": "${date.published}",
           "dateCreated": "${date.created}",
           "dateModified": "${date.modified}",
           "description": "${description}",
-          "author": {
-            "@type": "Person",
-            "name": "${author}"
-          },
-          "mainEntityOfPage": "${url}${slug}"
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "${url}${slug}"
+          }
         }
       `}</script>
       

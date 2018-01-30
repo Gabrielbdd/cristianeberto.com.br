@@ -7,7 +7,11 @@ import { AuthorJson, ImageSharp } from 'graphql-types'
 const injectStyles = withStyles(theme => ({
   root: {
     display: 'flex',
-    padding: '15px 0'
+    padding: '15px 0',
+
+    '& 0': {
+      margin: 0
+    }
   },
 
   avatar: {
@@ -22,7 +26,7 @@ const injectStyles = withStyles(theme => ({
   },
 
   id: {
-    margin: '0',
+    margin: '0 !important',
     fontSize: '24px !important'
   },
 

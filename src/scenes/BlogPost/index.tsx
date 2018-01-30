@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
-import { Divider } from 'material-ui'
-import { withStyles } from 'material-ui/styles'
+import { Divider, withStyles } from 'material-ui'
 import { StyledComponent } from 'utils/styledProps'
 import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from 'graphql-types'
 
@@ -20,6 +19,7 @@ const injectStyles = withStyles(theme => ({
       fontSize: '1.1em',
       letterSpacing: '.01em',
       lineHeight: '1.58',
+      marginTop: 21,
     },
 
     '& h2': {
@@ -33,7 +33,15 @@ const injectStyles = withStyles(theme => ({
 
     '& ul': {
       marginTop: '10px'
-    }
+    },
+
+    '& blockquote': {
+      paddingLeft: 30,
+      color: 'rgba(0,0,0,.68)',
+      fontStyle: 'italic',
+      letterSpacing: '3.995em',
+      fontSize: 19,
+    },
   },
 
   title: {
@@ -61,8 +69,8 @@ const injectStyles = withStyles(theme => ({
 
   [theme.breakpoints.up('sm')]: {
     root: {
-      paddingLeft: 100,
-      paddingRight: 100,
+      paddingLeft: 80,
+      paddingRight: 80,
     }
   },
 
@@ -90,7 +98,7 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
     const title  = frontmatter!.title!
     const image  = frontmatter!.image!.children![0].responsiveResolution.src as string
     const author = frontmatter!.author!.id!
-    const slug = fields!.slug!
+    const slug   = fields!.slug!
 
     return (
       <article className={classes.root}>
@@ -111,7 +119,7 @@ class BlogPost extends React.PureComponent<IProps & StyledComponent> {
         />
 
         <ReadingProgressBar>
-          <h1 className={classes.title}>{frontmatter.title}</h1>
+          <h1 className={classes.title}>{frontmatter!.title}</h1>
           <p className={classes.date}>Atualizado em {translateDate(frontmatter!.updatedDate!)}</p>
           <section dangerouslySetInnerHTML={{ __html: html as string }} />
           <p className={classes.date}>Publicado em {translateDate(frontmatter!.createdDate!)}</p>
