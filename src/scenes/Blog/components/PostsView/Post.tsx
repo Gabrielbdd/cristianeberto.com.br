@@ -1,6 +1,6 @@
-import * as React from 'react'
-import Link, { navigateTo } from 'gatsby-link'
-import Img from 'gatsby-image'
+import * as React from "react";
+import Link, { navigateTo } from "gatsby-link";
+import Img from "gatsby-image";
 import {
   Typography,
   Button,
@@ -11,19 +11,20 @@ import {
   Popover,
   Divider,
   Chip,
-  withStyles,
-} from 'material-ui'
-import Share from 'material-ui-icons/Share'
-import SocialShareList, { SocialMedia } from './SocialShareList'
-import { StyledComponent } from 'utils/styledProps'
-import { ImageSharpSizes } from 'graphql-types'
+  withStyles
+} from "material-ui";
+import Share from "material-ui-icons/Share";
+import { kebabCase } from "lodash";
+import SocialShareList, { SocialMedia } from "./SocialShareList";
+import { StyledComponent } from "utils/styledProps";
+import { ImageSharpSizes } from "graphql-types";
 
-const BASE_URL = 'https://cristianeberto.com.br'
+const BASE_URL = "https://cristianeberto.com.br";
 
 const injectStyles = withStyles(theme => ({
   root: {
     maxWidth: 360,
-    margin: '0 auto'
+    margin: "0 auto"
   },
 
   media: {
@@ -31,31 +32,32 @@ const injectStyles = withStyles(theme => ({
   },
 
   actions: {
-    justifyContent: 'space-between' as 'space-between'
+    justifyContent: "space-between" as "space-between"
   },
 
   tags: {
-    marginTop: 16,
+    marginTop: 16
   },
 
   tag: {
+    marginTop: theme.spacing.unit / 2,
     marginRight: theme.spacing.unit / 2,
 
-    '&:last-child': {
-      marginRight: 0,
-    },
+    "&:last-child": {
+      marginRight: 0
+    }
   }
-}))
+}));
 
 interface IPostProps {
-  slug: string
-  title: string
-  content: string
+  slug: string;
+  title: string;
+  content: string;
   image: {
-    sizes: ImageSharpSizes
-    alt: string
-  }
-  tags: string[]
+    sizes: ImageSharpSizes;
+    alt: string;
+  };
+  tags: string[];
 }
 
 @injectStyles
@@ -63,38 +65,38 @@ class Post extends React.Component<IPostProps & StyledComponent> {
   state = {
     anchorEl: undefined as undefined | HTMLElement,
     popoverHover: false
-  }
+  };
 
   handleShareButtonClick = ({ target }: any) => {
-    this.setState({ anchorEl: this.state.anchorEl ? undefined : target })
-  }
+    this.setState({ anchorEl: this.state.anchorEl ? undefined : target });
+  };
 
   handlePopoverResquestClose = () => {
-    this.setState({ anchorEl: undefined })
-  }
+    this.setState({ anchorEl: undefined });
+  };
 
-  render () {
-    const { title, slug, content, classes, image, tags } = this.props
+  render() {
+    const { title, slug, content, classes, image, tags } = this.props;
     const socialMedias: [SocialMedia] = [
       {
-        name: 'Facebook',
+        name: "Facebook",
         shareLink: `https://www.facebook.com/sharer/sharer.php?u=${BASE_URL}${slug}`
       },
       {
-        name: 'Twitter',
+        name: "Twitter",
         shareLink: `https://twitter.com/home?status=${BASE_URL}${slug}`
       },
       {
-        name: 'Google+',
+        name: "Google+",
         shareLink: `https://plus.google.com/share?url=${BASE_URL}${slug}`
       },
       {
-        name: 'WhatsApp',
+        name: "WhatsApp",
         shareLink: `https://api.whatsapp.com/send?text=cristianeberto.com${slug}`
       }
-    ]
-    const { anchorEl } = this.state
-    let open = !!anchorEl
+    ];
+    const { anchorEl } = this.state;
+    let open = !!anchorEl;
 
     return (
       <Card className={classes.root}>
@@ -105,19 +107,17 @@ class Post extends React.Component<IPostProps & StyledComponent> {
             {title}
           </Typography>
 
-          <Typography component="p">
-            {content}
-          </Typography>
+          <Typography component="p">{content}</Typography>
 
           <div className={classes.tags}>
-            {tags.map(tag => 
+            {tags.map(tag => (
               <Chip
                 key={tag}
                 label={tag}
                 className={classes.tag}
-                onClick={() => navigateTo(`/blog/tags/${tag}`)}
+                onClick={() => navigateTo(`/blog/tags/${kebabCase(tag)}`)}
               />
-            )}
+            ))}
           </div>
         </CardContent>
 
@@ -135,22 +135,21 @@ class Post extends React.Component<IPostProps & StyledComponent> {
             open={open}
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left'
+              vertical: "bottom",
+              horizontal: "left"
             }}
             transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left'
+              vertical: "top",
+              horizontal: "left"
             }}
-
             onClose={this.handlePopoverResquestClose}
           >
             <SocialShareList socialMedias={socialMedias} />
           </Popover>
         </CardActions>
       </Card>
-    )
+    );
   }
 }
 
-export default Post
+export default Post;
